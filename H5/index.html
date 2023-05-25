@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>兵长&三笠 的婚礼邀请函</title>
+  <title>南方&女方 的婚礼邀请函</title>
   <link rel="stylesheet" href="./public/css/zepto.fullpage.css">
   <link rel="stylesheet" href="./public/css/animate.css">
   <link rel="stylesheet" href="./public/css/index.css">
@@ -627,7 +627,7 @@
       </div>
     </div>
     <span class="start"><i class="iconfont" style="color: #fff;font-size: 30px;">&#xe606;</i></span>
-    <audio id="mp3" src="./public/music/music.mp3" autoplay loop></audio>
+    <audio id="mp3" src="./public/music/music.mp3" loop></audio>
     <script src="./public/js/js.fullpage.js"></script>
     <script type="text/javascript"
       src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
@@ -778,6 +778,7 @@
         let play
 
         mp3.load()
+        mp3.play()
 
         document.addEventListener("WeixinJSBridgeReady", function () {
           mp3.play()
@@ -788,7 +789,7 @@
           }
         }, false)
 
-        play = !mp3.paused && mp3.readyState === 4
+        play = !mp3.paused
 
         if (play) {
           playBtn.style.animationPlayState = 'running'
