@@ -1,6 +1,10 @@
 <template>
   <div id="image">
-    <img src="../assets/Image_created_with_a_mobile_phone.png" class="animate__animated animate__jackInTheBox animate__infinite" alt="" />
+    <img
+      src="../assets/Image_created_with_a_mobile_phone.png"
+      class="animate__animated animate__jackInTheBox animate__infinite"
+      alt=""
+    />
   </div>
 </template>
 
@@ -10,5 +14,10 @@
 <style scoped>
 #image {
   z-index: 1;
+  margin-top: 50%;
+  transform: translateY(-100%);
+}
+img {
+  width: 60%;
 }
 </style>
