@@ -3,5 +3,26 @@
     "projectname": "activity-miniProgram",
     "setting": {
         "compileHotReLoad": true
+    },
+    "libVersion": "2.25.3",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "弹幕",
+                    "pathName": "pages/bullet/bullet",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "活动",
+                    "pathName": "pages/activity/activity",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
+        }
     }
 }

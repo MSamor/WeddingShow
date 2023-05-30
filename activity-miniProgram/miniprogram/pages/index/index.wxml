@@ -1,23 +1,21 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+<view class="userinfo">
+    <block wx:if="{{!hasUserInfo}}">
+        <view class="login">
+            <view class="no-login">
+                未登录
+            </view>
+            <t-button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" class="login-btn" theme="primary" size="large" shape="round">立即登录</t-button>
+        </view>
     </block>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+</view>
+<t-notice-bar visible="{{true}}" content="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" prefixIcon="sound" marquee="{{marquee}}" bind:click="click"></t-notice-bar>
+<view class="block">
+    <t-grid column="{{2}}" theme="card">
+        <t-grid-item text="发送弹幕" description="弹幕内容将会在大屏中展示" image="{{img1}}" url="../bullet/bullet" />
+        <t-grid-item text="活动抽奖" description="参与活动，幸运大奖等你来！" image="{{img2}}" url="../activity/activity"/>
+    </t-grid>
 </view>

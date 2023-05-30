@@ -1,0 +1,31 @@
+<wxs src="./popup.wxs" module="utils" />
+<wxs src="../common/utils.wxs" module="_" />
+
+<view
+  wx:if="{{realVisible}}"
+  style="{{_._style([utils.getPopupStyles(zIndex), style, customStyle])}}"
+  class="{{_.cls(classPrefix, [placement])}} {{transitionClass}} class {{prefix}}-class"
+  bind:transitionend="onTransitionEnd"
+  aria-role="dialog"
+  aria-modal="{{ true }}"
+>
+  <view class="{{classPrefix}}__content {{prefix}}-class-content">
+    <slot name="content" />
+    <slot />
+    <view class="{{classPrefix}}__close" bind:tap="handleClose">
+      <t-icon name="close" wx:if="{{closeBtn}}" size="64rpx" />
+      <slot name="close-btn" class="{{classPrefix}}-slot" />
+    </view>
+  </view>
+</view>
+
+<t-overlay
+  id="popup-overlay"
+  wx:if="{{showOverlay}}"
+  visible="{{visible}}"
+  class="test"
+  z-index="{{overlayProps.zIndex || 11000}}"
+  prevent-scroll-through="{{preventScrollThrough || overlayProps.preventScrollThrough}}"
+  bind:tap="handleOverlayClick"
+  style="{{overlayProps.style || ''}}"
+/>

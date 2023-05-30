@@ -1,0 +1,21 @@
+<view class="wrapper">
+    <scroll-view class="scrollView" scroll-y="true">
+        <t-cell title="2023年5月30日15:15:48" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+    </scroll-view>
+
+    <view class="pupBox">
+        <t-input label="" placeholder="请输入弹幕消息">
+            <t-button slot="suffix" theme="primary"> 立即发送 </t-button>
+        </t-input>
+    </view>
+</view>

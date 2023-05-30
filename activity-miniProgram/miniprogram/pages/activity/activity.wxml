@@ -1,0 +1,34 @@
+<view class="demo-count-down">
+  <text class="demo-count-down-desc"> 开奖倒计时 </text>
+  <view class="demo-count-down-content">
+    <t-count-down
+      t-class-count="external-count"
+      t-class-split="external-split"
+      content="default"
+      time="{{ time }}"
+      splitWithUnit
+    />
+  </view>
+</view>
+<view>
+    立即参与抽奖
+</view>
+<view>
+    今天呼声最高的人中奖概率最高哦，哈哈哈啊哈哈哈
+</view>
+<view>
+    奖品列表：
+    1.百元红包
+    1.百元红包
+    1.百元红包
+    1.百元红包
+    1.百元红包
+    1.百元红包
+</view>
+<view>
+    待开奖
+</view>
+<view>
+    中奖人列表：
+    1.貌似：百元红包
+</view>

@@ -1,0 +1,15 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.scrollView {
+    max-height: 90vh;
+}
+.pupBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
