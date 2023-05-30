@@ -1,0 +1,31 @@
+# 端口
+server:
+  port: 8888
+
+spring:
+  application:
+    name: weddingShow
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+  datasource:
+    #测试环境
+    url: jdbc:mysql://localhost:3306/wedding_show?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: root
+    hikari:
+      max-lifetime: 30000
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+token:
+  wechat:
+    # 小程序配置
+    mini-program:
+      app-id: xxxxxxxxxxxxxx
+      app-secret: xxxxxxxxxxxxxx

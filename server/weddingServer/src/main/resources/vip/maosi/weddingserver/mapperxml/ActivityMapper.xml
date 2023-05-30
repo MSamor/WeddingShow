@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.maosi.weddingserver.mapper.ActivityMapper">
+  <resultMap id="BaseResultMap" type="vip.maosi.weddingserver.domain.Activity">
+    <!--@mbg.generated-->
+    <!--@Table activity-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_end_date" jdbcType="TIMESTAMP" property="activityEndDate" />
+    <result column="win_num" jdbcType="INTEGER" property="winNum" />
+    <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, activity_name, activity_end_date, win_num, prize_id, code
+  </sql>
+</mapper>
