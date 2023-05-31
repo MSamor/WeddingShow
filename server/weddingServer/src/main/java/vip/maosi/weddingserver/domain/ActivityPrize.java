@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -28,7 +27,7 @@ public class ActivityPrize implements Serializable {
      * 奖品名称
      */
     @TableField(value = "prize_name")
-    @Size(max = 255,message = "奖品名称最大长度要小于 255")
+    @Size(max = 255, message = "奖品名称最大长度要小于 255")
     private String prizeName;
 
     /**
@@ -47,7 +46,7 @@ public class ActivityPrize implements Serializable {
      * 排序码
      */
     @TableField(value = "`order`")
-    @Size(max = 255,message = "排序码最大长度要小于 255")
+    @Size(max = 255, message = "排序码最大长度要小于 255")
     private String order;
 
     private static final long serialVersionUID = 1L;

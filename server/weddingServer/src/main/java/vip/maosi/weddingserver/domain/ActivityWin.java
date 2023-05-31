@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
-
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -50,7 +49,7 @@ public class ActivityWin implements Serializable {
      * 额外说明
      */
     @TableField(value = "memo")
-    @Size(max = 255,message = "额外说明最大长度要小于 255")
+    @Size(max = 255, message = "额外说明最大长度要小于 255")
     private String memo;
 
     private static final long serialVersionUID = 1L;

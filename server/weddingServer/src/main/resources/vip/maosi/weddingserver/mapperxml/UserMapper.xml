@@ -6,12 +6,13 @@
     <!--@Table `user`-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
-    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="sign_date" jdbcType="TIMESTAMP" property="signDate" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, openid, `date`, avatar_url, nick_name
+    id, openid, sign_date, avatar_url, nick_name, last_login_date
   </sql>
 </mapper>

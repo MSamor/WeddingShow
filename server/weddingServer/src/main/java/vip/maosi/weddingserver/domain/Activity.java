@@ -26,7 +26,7 @@ public class Activity implements Serializable {
      * 活动名称
      */
     @TableField(value = "activity_name")
-    @Size(max = 255,message = "活动名称最大长度要小于 255")
+    @Size(max = 255, message = "活动名称最大长度要小于 255")
     private String activityName;
 
     /**
@@ -51,7 +51,7 @@ public class Activity implements Serializable {
      * Lucky draw，抽奖code
      */
     @TableField(value = "code")
-    @Size(max = 255,message = "Lucky draw，抽奖code最大长度要小于 255")
+    @Size(max = 255, message = "Lucky draw，抽奖code最大长度要小于 255")
     private String code;
 
     private static final long serialVersionUID = 1L;
