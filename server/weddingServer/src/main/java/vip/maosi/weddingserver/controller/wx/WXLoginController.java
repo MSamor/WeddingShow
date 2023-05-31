@@ -1,5 +1,6 @@
 package vip.maosi.weddingserver.controller.wx;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -36,12 +37,13 @@ public class WXLoginController {
 
     /**
      * 获取头像昵称
-     * @param openid openid
+     *
      * @param userInfo 用户信息
      * @return
      */
     @PostMapping("/login")
-    public ResEntity<String> login(@RequestParam String openid, @RequestBody @Validated WXUserInfoDto userInfo) {
+    public ResEntity<String> login(HttpServletRequest request, @RequestBody @Validated WXUserInfoDto userInfo) {
+        val openid = request.getHeader("openid");
         val login = wxService.login(openid, userInfo);
         if (login) {
             return RGenerator.resSuccess("登录成功");

@@ -11,10 +11,12 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
 @TableName(value = "activity_win")
 public class ActivityWin implements Serializable {
     @TableId(value = "id", type = IdType.INPUT)

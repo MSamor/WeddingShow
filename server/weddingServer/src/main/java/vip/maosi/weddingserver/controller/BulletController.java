@@ -2,6 +2,7 @@ package vip.maosi.weddingserver.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.val;
@@ -43,15 +44,15 @@ public class BulletController {
     /**
      * 分页获取自己发送的弹幕列表
      *
-     * @param openid   openid
      * @param pageNum  页码
      * @param pageSize 分页大小
      * @return
      */
     @GetMapping("/getBulletsByOpenid")
-    public ResEntity<Page<Bullet>> getBulletsByOpenid(@RequestParam @NotBlank(message = "openid不能为空") String openid,
+    public ResEntity<Page<Bullet>> getBulletsByOpenid(HttpServletRequest request,
                                                       @RequestParam @Min(message = "不能小于1", value = 1) Integer pageNum,
                                                       @RequestParam @Min(message = "不能小于1", value = 1) Integer pageSize) {
+        val openid = request.getHeader("openid");
         val user = wxService.getUser(openid);
         if (user == null) return RGenerator.resCustom(-1, "用户不存在");
         val page = bulletService.page(new Page<>(pageNum, pageSize),
@@ -62,13 +63,14 @@ public class BulletController {
 
     /**
      * 发送弹幕
-     * @param openid openid
+     *
      * @param text 发送文本
      * @return
      */
     @GetMapping("/sendBullet")
-    public ResEntity<String> sendBullet(@RequestParam @NotBlank(message = "openid不能为空") String openid,
+    public ResEntity<String> sendBullet(HttpServletRequest request,
                                         @RequestParam @NotBlank(message = "发送内容不能为空") String text) {
+        val openid = request.getHeader("openid");
         val user = wxService.getUser(openid);
         if (user == null) return RGenerator.resCustom(-1, "用户不存在");
         val bullet = new Bullet()

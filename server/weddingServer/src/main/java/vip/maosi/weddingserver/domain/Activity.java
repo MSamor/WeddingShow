@@ -42,10 +42,10 @@ public class Activity implements Serializable {
     private Integer winNum;
 
     /**
-     * 奖品列表id
+     * 活动描述
      */
-    @TableField(value = "prize_id")
-    private Integer prizeId;
+    @TableField(value = "activity_desc")
+    private Integer activityDesc;
 
     /**
      * Lucky draw，抽奖code
