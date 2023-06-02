@@ -21,9 +21,16 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, Ref } from "vue";
+import socket from "@/request/socket";
+
+socket.onmessage = (event:any) => {
+  let data = JSON.parse(event.data);
+  if (data.code == 1) {
+    addBarrage(data.data);
+  }
+};
 
 let avatar = ref("avatar");
-var socket: WebSocket;
 interface BarrageItem {
   message: string;
   color: string;
@@ -37,7 +44,7 @@ const barrageItemHeight: number = 80;
 const screenWith: number = window.innerWidth;
 
 let timer = null;
-let baseWsUrl = "ws:localhost:8888/ws/weddingShow";
+
 onMounted(() => {
   startBarrage();
 });
@@ -54,30 +61,16 @@ const startBarrage = () => {
 };
 
 const addBarrage = (text: string) => {
-  let bullet = JSON.parse(text)
+  let bullet = JSON.parse(text);
   const item = {
     message: bullet.text,
     color: "red",
     top: Math.random() * 1000,
     right: screenWith,
     nickName: bullet.nickName,
-    url: bullet.url
+    url: bullet.url,
   };
   messages.value.push(item);
-};
-
-socket = new WebSocket(baseWsUrl);
-socket.onopen = (event) => {};
-socket.onmessage = (event) => {
-  let data = JSON.parse(event.data);
-  if (data.code == 1) {
-    addBarrage(data.data);
-  }
-};
-socket.onclose = (event) => {
-  setTimeout(() => {
-    socket = new WebSocket(baseWsUrl);
-  }, 5000);
 };
 </script>
 

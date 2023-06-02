@@ -10,7 +10,7 @@ interface ResultData<T = any> extends Result {
     data?: T;
 }
 
-const URL: string = 'http:localhost:8888'
+const URL: string = 'http://localhost:8888'
 
 enum RequestEnums {
     TIMEOUT = 20000,
@@ -31,29 +31,16 @@ class RequestHttp {
     // 定义成员变量并指定类型
     service: AxiosInstance;
     public constructor(config: AxiosRequestConfig) {
-        // 实例化axios
         this.service = axios.create(config);
-
-        /**
-         * 请求拦截器
-         * 客户端发送请求 -> [请求拦截器] -> 服务器
-         * token校验(JWT) : 接受服务器返回的token,存储到vuex/pinia/本地储存当中
-         */
         axios.interceptors.request.use((request: InternalAxiosRequestConfig) => {
-            request.headers.set('Authorization', `Bearer`);
-
+            // request.headers.set('Authorization', `Bearer`);
             return request;
         });
 
-        /**
-         * 响应拦截器
-         * 服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
-         */
         this.service.interceptors.response.use(
             (response: AxiosResponse) => {
                 const { data, config } = response; // 解构
                 if (data.code === RequestEnums.OVERDUE) {
-                    // 登录信息失效，应跳转到登录页面，并清空本地的token
                     localStorage.setItem('token', '');
                     // router.replace({
                     //   path: '/login'

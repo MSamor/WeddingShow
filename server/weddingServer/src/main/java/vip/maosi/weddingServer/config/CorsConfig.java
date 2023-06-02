@@ -1,4 +1,4 @@
-package com.craftsman.util.config;
+package vip.maosi.weddingServer.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

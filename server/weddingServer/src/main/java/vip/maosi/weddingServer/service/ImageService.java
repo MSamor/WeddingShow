@@ -30,4 +30,8 @@ public class ImageService extends ServiceImpl<ImageMapper, Image> {
     public List<Image> getImages() {
         return list();
     }
+
+    public List<Image> getImagesByIds(List<Integer> imgIds) {
+        return listByIds(imgIds);
+    }
 }

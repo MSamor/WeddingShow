@@ -1,23 +1,81 @@
 <template>
-  <div id="image">
-    <img
-      src="../assets/Image_created_with_a_mobile_phone.png"
-      class="animate__animated animate__jackInTheBox animate__infinite"
-      alt=""
-    />
-  </div>
+  <Swiper
+    :slides-per-view="1"
+    :space-between="50"
+    :loop="true"
+    :autoplay="autoplayOptions"
+    @swiper="onSwiper"
+    @slideChange="onSlideChange"
+    :modules="modules"
+    effect="fade"
+    class="mySwiper"
+  >
+    <SwiperSlide
+      class="swiperItem"
+      v-for="(item, index) in swiperList"
+      :key="index"
+    >
+      <img :src="item.fileData" alt="" srcset="" />
+    </SwiperSlide>
+  </Swiper>
 </template>
 
 <script lang="ts" setup>
+import { getImageList } from "@/request/bullet";
+import { defineComponent, onMounted, reactive } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay } from "swiper";
+import socket from "@/request/socket";
+import "swiper/css";
+
+let modules = [Autoplay];
+const autoplayOptions = {
+  delay: 1000,
+  disableOnInteraction: false,
+};
+
+interface image {
+  fileData: string;
+  fileSize: number;
+  fileType: string;
+  filename: string;
+}
+
+let swiperList: image[] = reactive([]);
+
+onMounted(async () => {
+  getImage();
+});
+const onSwiper = (swiper: any) => {};
+const onSlideChange = () => {};
+
+const getImage = async () => {
+  let data = await getImageList();
+  data.data.forEach((el: image) => {
+    el.fileData = "data:" + el.fileType + ";base64," + el.fileData;
+    swiperList.push(el);
+  });
+};
+
+socket.onmessage = (event: any) => {
+  let data = JSON.parse(event.data);
+  console.log(data);
+  if (data.code == 2) {
+    getImage();
+  }
+};
 </script>
 
 <style scoped>
-#image {
-  z-index: 1;
-  margin-top: 50%;
-  transform: translateY(-100%);
-}
 img {
   width: 60%;
+}
+.mySwiper {
+  z-index: 2;
+  margin-top: 50%;
+  transform: translateY(-50%);
+}
+.swiperItem {
+  background-color: #fff;
 }
 </style>
