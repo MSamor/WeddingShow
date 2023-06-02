@@ -5,18 +5,15 @@
       v-for="(item, index) in messages"
       :key="index"
       :style="{
-        transform: 'translateX('+item.right + 'px)' ,
+        transform: 'translateX(' + item.right + 'px)',
         top: item.top + 'px',
         color: item.color,
       }"
     >
       <div class="avatar" ref="avatar">
-        <img
-          class="avatarImg"
-          src="../assets/Image_created_with_a_mobile_phone.png"
-          alt="头像"
-        />
-        <div class="text">新婚快乐</div>
+        <img class="avatarImg" :src="item.url" alt="头像" />
+        <div class="nickname">{{ item.nickName }}:</div>
+        <div class="text">{{ item.message }}</div>
       </div>
     </div>
   </div>
@@ -26,54 +23,61 @@
 import { ref, onMounted, Ref } from "vue";
 
 let avatar = ref("avatar");
+var socket: WebSocket;
 interface BarrageItem {
   message: string;
   color: string;
   top: number;
   right: number;
+  nickName: string;
+  url: string;
 }
 const messages: Ref<BarrageItem[]> = ref([]);
 const barrageItemHeight: number = 80;
 const screenWith: number = window.innerWidth;
 
 let timer = null;
-
+let baseWsUrl = "ws:localhost:8888/ws/weddingShow";
 onMounted(() => {
-  addBarrage();
   startBarrage();
 });
 
 const startBarrage = () => {
-  messages.value.map((item) => {
-    item.top = Math.random() * 1000;
-  });
   timer = setInterval(() => {
     messages.value.map((item) => {
       item.right -= 3;
       if (item.right < -5000) {
-        messages.value.pop()
+        messages.value.pop();
       }
     });
   }, 1);
 };
 
-const addBarrage = () => {
-  const item1 = {
-    message: "新婚快乐！",
+const addBarrage = (text: string) => {
+  let bullet = JSON.parse(text)
+  const item = {
+    message: bullet.text,
     color: "red",
-    top: 10,
+    top: Math.random() * 1000,
     right: screenWith,
+    nickName: bullet.nickName,
+    url: bullet.url
   };
-  const item2 = {
-    message: "新婚快乐2！",
-    color: "red",
-    top: 30,
-    right: screenWith,
-  };
-  messages.value.push(item1);
+  messages.value.push(item);
+};
+
+socket = new WebSocket(baseWsUrl);
+socket.onopen = (event) => {};
+socket.onmessage = (event) => {
+  let data = JSON.parse(event.data);
+  if (data.code == 1) {
+    addBarrage(data.data);
+  }
+};
+socket.onclose = (event) => {
   setTimeout(() => {
-    messages.value.push(item2);
-  }, 2000);
+    socket = new WebSocket(baseWsUrl);
+  }, 5000);
 };
 </script>
 
@@ -86,6 +90,11 @@ const addBarrage = () => {
   z-index: 1;
   display: flex;
   overflow: hidden;
+}
+.nickname {
+  font-size: 2rem;
+  color: black;
+  margin-left: 0.5rem;
 }
 #bullet {
   position: absolute;
@@ -106,7 +115,7 @@ const addBarrage = () => {
   height: 4rem;
 }
 .text {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-left: 10px;
 }
 </style>

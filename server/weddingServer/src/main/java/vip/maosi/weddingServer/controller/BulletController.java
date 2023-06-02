@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import vip.maosi.weddingServer.domain.Bullet;
+import vip.maosi.weddingServer.dto.BulletDto;
 import vip.maosi.weddingServer.meta.SessionKeys;
 import vip.maosi.weddingServer.response.DefinedCode;
 import vip.maosi.weddingServer.response.RGenerator;
@@ -20,6 +21,7 @@ import vip.maosi.weddingServer.response.ResEntity;
 import vip.maosi.weddingServer.service.BulletService;
 import vip.maosi.weddingServer.service.UserService;
 import vip.maosi.weddingServer.service.wx.WXService;
+import vip.maosi.weddingServer.util.JsonUtils;
 import vip.maosi.weddingServer.util.SessionManagerUtils;
 
 import java.util.Date;
@@ -79,7 +81,13 @@ public class BulletController {
                 .setText(text);
         val save = bulletService.save(bullet);
         if (save) {
-            sessionManagerUtils.sendMessageToAll(SessionKeys.WEDDING_SHOW.name(), "发送弹幕", text, DefinedCode.SUCCESS);
+            val bulletDto = new BulletDto();
+            bulletDto.setUrl(user.getAvatarUrl())
+                            .setNickName(user.getNickName())
+                                    .setText(text);
+            sessionManagerUtils.sendMessageToAll(SessionKeys.WEDDING_SHOW.name(), "发送弹幕",
+                    JsonUtils.toJson(bulletDto),
+                    DefinedCode.BULLET);
             return RGenerator.resSuccess("发送成功");
         }
         return RGenerator.resCustom(-1, "发送失败");

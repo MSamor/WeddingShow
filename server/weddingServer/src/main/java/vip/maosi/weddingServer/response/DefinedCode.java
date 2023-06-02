@@ -6,7 +6,8 @@ public enum DefinedCode {
     NOUSER(401, "登录授权失败"),
     AUTHERROR(403, "拒绝访问"),
     TIMEOUT(404, "没有找到资源"),
-    SERVERERROR(500, "服务器内部错误");
+    SERVERERROR(500, "服务器内部错误"),
+    BULLET(1,"发送弹幕");
 
     private int code;
     private String msg;
