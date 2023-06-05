@@ -14,8 +14,7 @@
 </view>
 <t-notice-bar visible="{{true}}" content="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" prefixIcon="sound" marquee="{{marquee}}" bind:click="click"></t-notice-bar>
 <view class="block">
-    <t-grid column="{{2}}" theme="card">
-        <t-grid-item text="发送弹幕" description="弹幕内容将会在大屏中展示" image="{{img1}}" url="../bullet/bullet" />
-        <t-grid-item text="活动抽奖" description="参与活动，幸运大奖等你来！" image="{{img2}}" url="../activity/activity"/>
+    <t-grid column="{{1}}" theme="card">
+        <t-grid-item text="管理中心" description="管理弹幕和发布人" image="{{img1}}" url="../bullet/bullet" />
     </t-grid>
 </view>

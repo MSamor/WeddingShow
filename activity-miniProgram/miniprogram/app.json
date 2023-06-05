@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/index/index",
-        "pages/bullet/bullet",
-        "pages/activity/activity"
+        "pages/activity/activity",
+        "pages/mine/mine",
+        "pages/bullet/bullet"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -10,5 +10,29 @@
         "navigationBarTitleText": "婚礼活动",
         "navigationBarTextStyle": "black"
     },
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "color": "#666",
+        "selectedColor": "#fd7143",
+        "borderStyle": "white",
+        "list": [{
+                "pagePath": "pages/activity/activity",
+                "text": "活动",
+                "iconPath": "img/xin-hunli.png",
+                "selectedIconPath": "img/xin-hunli.png"
+            },
+            {
+                "pagePath": "pages/bullet/bullet",
+                "text": "发送弹幕",
+                "iconPath": "img/bell.png",
+                "selectedIconPath": "img/bell.png"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "我的",
+                "iconPath": "img/hunli.png",
+                "selectedIconPath": "img/hunli.png"
+            }
+        ]
+    }
 }
