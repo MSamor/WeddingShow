@@ -1,5 +1,5 @@
 const app = getApp<IAppOption>()
-
+import api from '../../utils/loginApi'
 Page({
     data: {
         userInfo: {},
@@ -13,7 +13,7 @@ Page({
             speed: 60,
             loop: -1,
             delay: 0,
-          },
+        },
     },
     onLoad() {
         // @ts-ignore
@@ -21,6 +21,13 @@ Page({
             this.setData({
                 canIUseGetUserProfile: true
             })
+            if (app.globalData.userInfo?.avatarUrl != undefined && 
+                app.globalData.userInfo?.avatarUrl != "") {
+                this.setData({
+                    userInfo: app.globalData.userInfo,
+                    hasUserInfo: true
+                })
+            }
         }
     },
     getUserProfile() {
@@ -28,10 +35,23 @@ Page({
         wx.getUserProfile({
             desc: '展示用户信息',
             success: (res) => {
-                console.log(res)
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
+                })
+                api.login(res.userInfo)
+                app.globalData.userInfo = res.userInfo
+                wx.showToast({
+                    title: '更新成功',
+                    icon: 'success',
+                    duration: 2000
+                })
+            },
+            fail: () => {
+                wx.showToast({
+                    title: '更新失败',
+                    icon: 'error',
+                    duration: 2000
                 })
             }
         })

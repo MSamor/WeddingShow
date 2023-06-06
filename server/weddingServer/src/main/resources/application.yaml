@@ -7,7 +7,7 @@ spring:
   application:
     name: weddingShow
   profiles:
-    active: dev
+    active: prod
 
   servlet:
     multipart:
