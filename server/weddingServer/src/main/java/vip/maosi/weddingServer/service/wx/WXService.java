@@ -48,8 +48,8 @@ public class WXService {
         return openid;
     }
 
-    public boolean silentLogin(String code) {
-        if (StringUtils.isEmpty(code)) return false;
+    public String silentLogin(String code) {
+        if (StringUtils.isEmpty(code)) return null;
         val openid = getOpenid(code);
         final User user = getUser(openid);
         if (user == null) {
@@ -57,10 +57,18 @@ public class WXService {
                     .setLastLoginDate(new Date())
                     .setSignDate(new Date())
                     .setOpenid(openid);
-            return userService.save(newUser);
+            val save = userService.save(newUser);
+            if (save) {
+                return openid;
+            }
+            return null;
         }
         user.setLastLoginDate(new Date());
-        return userService.updateById(user);
+        val update = userService.updateById(user);
+        if (update) {
+            return openid;
+        }
+        return null;
     }
 
     public User getUser(String openid) {
@@ -72,7 +80,11 @@ public class WXService {
         if (user == null) return false;
         user.setLastLoginDate(new Date())
                 .setNickName(userInfo.getNickName())
-                .setAvatarUrl(userInfo.getAvatarUrl());
+                .setAvatarUrl(userInfo.getAvatarUrl())
+                .setCity(userInfo.getCity())
+                .setCountry(user.getCountry())
+                .setProvince(userInfo.getProvince())
+                .setGender(userInfo.getGender());
         return userService.updateById(user);
     }
 }

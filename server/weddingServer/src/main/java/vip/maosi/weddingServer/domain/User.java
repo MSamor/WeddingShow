@@ -61,6 +61,18 @@ public class User implements Serializable {
     @TableField(value = "last_login_date")
     private Date lastLoginDate;
 
+    @TableField(value = "gender")
+    private String gender;
+
+    @TableField(value = "province")
+    private String province;
+
+    @TableField(value = "country")
+    private String country;
+
+    @TableField(value = "city")
+    private String city;
+
     private static final long serialVersionUID = 1L;
 
     public static final String COL_ID = "id";

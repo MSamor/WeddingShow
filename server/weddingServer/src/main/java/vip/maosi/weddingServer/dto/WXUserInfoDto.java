@@ -9,4 +9,8 @@ public class WXUserInfoDto {
     private String avatarUrl;
     @NotBlank(message = "昵称不能为空")
     private String nickName;
+    private String gender;
+    private String province;
+    private String country;
+    private String city;
 }

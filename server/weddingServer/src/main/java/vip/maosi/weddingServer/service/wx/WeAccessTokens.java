@@ -50,8 +50,8 @@ public class WeAccessTokens {
         final var url = "https://api.weixin.qq.com/cgi-bin/token";
         final var params = Map.of(
                 "grant_type", "client_credential",
-                "appid", tokenProp.wechat.miniProgram.appId,
-                "secret", tokenProp.wechat.miniProgram.appSecret
+                "appid", tokenProp.wechat.publicProgram.appId,
+                "secret", tokenProp.wechat.publicProgram.appSecret
         );
         var accessToken = "";
         try {

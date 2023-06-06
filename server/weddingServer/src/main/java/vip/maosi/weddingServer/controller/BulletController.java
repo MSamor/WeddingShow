@@ -90,6 +90,6 @@ public class BulletController {
                     DefinedCode.BULLET);
             return RGenerator.resSuccess("发送成功");
         }
-        return RGenerator.resCustom(-1, "发送失败");
+        return RGenerator.resCustom(-2, "发送失败");
     }
 }

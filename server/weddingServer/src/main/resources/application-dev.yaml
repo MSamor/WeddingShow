@@ -2,13 +2,17 @@ spring:
   datasource:
     #测试环境
     url: jdbc:mysql://localhost:3306/wedding_show?serverTimezone=GMT%2B8&characterEncoding=utf-8
-    username: root
-    password: root
+    username: xxxxxx
+    password: xxxxxx
     hikari:
       max-lifetime: 30000
 token:
   wechat:
     # 小程序配置
     mini-program:
-      app-id: xxxxxxxxxxxxxxxxxxxxxxxxx
-      app-secret: xxxxxxxxxxxxxxxxxxxxxxxxxx
+      app-id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      app-secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    # 公众号配置
+    public-program:
+      app-id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      app-secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

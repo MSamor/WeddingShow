@@ -20,9 +20,19 @@ public class TokenProp {
         @NestedConfigurationProperty
         public MiniProgram miniProgram;
 
+        @NestedConfigurationProperty
+        public PublicProgram publicProgram;
+
         @Getter
         @Setter
         public static class MiniProgram {
+            public String appId;
+            public String appSecret;
+        }
+
+        @Getter
+        @Setter
+        public static class PublicProgram {
             public String appId;
             public String appSecret;
         }
