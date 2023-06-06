@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>南方&女方 的婚礼邀请函</title>
+  <title>男方&女方 的婚礼邀请函</title>
   <link rel="stylesheet" href="./public/css/zepto.fullpage.css">
   <link rel="stylesheet" href="./public/css/animate.css">
   <link rel="stylesheet" href="./public/css/index.css">
@@ -116,6 +116,9 @@
       visibility: hidden;
     }
   </style>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+  <script src="./public/js/jquery.js"></script>
+  <script src="./public/js/wx.js" type="module"></script>
   <script type="text/javascript">
     var loadSum = 0
     var isMobile = null
@@ -708,7 +711,7 @@
       function initMap() {
         if (window.BMap) {
           mapFlag = true
-          var mapCenter = [104.083002, 30.5621]
+          var mapCenter = [104.083002, 30.8621]
           var map = new BMap.Map("map", { minZoom: 10, maxZoom: 14 })
 
           map.centerAndZoom(new BMap.Point(mapCenter[0], mapCenter[1]), 13);
@@ -775,10 +778,9 @@
       window.onload = function () {
         let mp3 = document.querySelector('#mp3')
         let playBtn = document.querySelector('#play-btn')
-        let play
-
         mp3.load()
         mp3.play()
+        play = true
 
         document.addEventListener("WeixinJSBridgeReady", function () {
           mp3.play()
@@ -789,7 +791,7 @@
           }
         }, false)
 
-        play = !mp3.paused
+  
 
         if (play) {
           playBtn.style.animationPlayState = 'running'
