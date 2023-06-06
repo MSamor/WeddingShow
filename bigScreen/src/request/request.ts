@@ -32,24 +32,15 @@ class RequestHttp {
     service: AxiosInstance;
     public constructor(config: AxiosRequestConfig) {
         this.service = axios.create(config);
-        axios.interceptors.request.use((request: InternalAxiosRequestConfig) => {
-            // request.headers.set('Authorization', `Bearer`);
-            return request;
-        });
 
         this.service.interceptors.response.use(
             (response: AxiosResponse) => {
-                const { data, config } = response; // 解构
+                const { data, config } = response; 
                 if (data.code === RequestEnums.OVERDUE) {
-                    localStorage.setItem('token', '');
-                    // router.replace({
-                    //   path: '/login'
-                    // })
                     return Promise.reject(data);
                 }
                 // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
                 if (data.code && data.code !== RequestEnums.SUCCESS) {
-                    //   ElMessage.error(data); // 此处也可以使用组件提示报错信息
                     return Promise.reject(data)
                 }
                 return data;
@@ -60,7 +51,6 @@ class RequestHttp {
                     this.handleCode(response.status)
                 }
                 if (!window.navigator.onLine) {
-                    //   ElMessage.error('网络连接失败');
                 }
             }
         )
@@ -68,10 +58,8 @@ class RequestHttp {
     handleCode(code: number): void {
         switch (code) {
             case 401:
-                // ElMessage.error('登录失败，请重新登录');
                 break;
             default:
-                // ElMessage.error('请求失败');
                 break;
         }
     }

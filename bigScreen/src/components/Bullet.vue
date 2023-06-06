@@ -64,7 +64,7 @@ const addBarrage = (text: string) => {
   let bullet = JSON.parse(text);
   const item = {
     message: bullet.text,
-    color: "red",
+    color: "#191a23",
     top: Math.random() * 1000,
     right: screenWith,
     nickName: bullet.nickName,
@@ -80,7 +80,7 @@ const addBarrage = (text: string) => {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   overflow: hidden;
 }
@@ -95,10 +95,10 @@ const addBarrage = (text: string) => {
 .avatar {
   justify-content: center;
   align-items: center;
-  background-color: pink;
+  background-color: #ffd9d9;
   border-radius: 50px;
   padding: 3px 15px;
-  border: 5px solid white;
+  border: 5px solid rgb(255, 255, 255);
   opacity: 0.8;
   display: flex;
 }

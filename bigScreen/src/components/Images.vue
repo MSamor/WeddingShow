@@ -1,23 +1,25 @@
 <template>
-  <Swiper
-    :slides-per-view="1"
-    :space-between="50"
-    :loop="true"
-    :autoplay="autoplayOptions"
-    @swiper="onSwiper"
-    @slideChange="onSlideChange"
-    :modules="modules"
-    effect="fade"
-    class="mySwiper"
-  >
-    <SwiperSlide
-      class="swiperItem"
-      v-for="(item, index) in swiperList"
-      :key="index"
+  <div class="swiper">
+    <Swiper
+      :slides-per-view="1"
+      :space-between="50"
+      :loop="true"
+      :autoplay="autoplayOptions"
+      @swiper="onSwiper"
+      @slideChange="onSlideChange"
+      :modules="modules"
+      effect="fade"
+      class="mySwiper"
     >
-      <img :src="item.fileData" alt="" srcset="" />
-    </SwiperSlide>
-  </Swiper>
+      <SwiperSlide
+        class="swiperItem"
+        v-for="(item, index) in swiperList"
+        :key="index"
+      >
+        <img class="img" :src="item.fileData" alt="" srcset="" />
+      </SwiperSlide>
+    </Swiper>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -30,7 +32,7 @@ import "swiper/css";
 
 let modules = [Autoplay];
 const autoplayOptions = {
-  delay: 1000,
+  delay: 5000,
   disableOnInteraction: false,
 };
 
@@ -66,16 +68,17 @@ socket.onmessage = (event: any) => {
 };
 </script>
 
-<style scoped>
-img {
-  width: 60%;
-}
-.mySwiper {
+<style>
+.swiper {
   z-index: 2;
-  margin-top: 50%;
-  transform: translateY(-50%);
+  height: 100%;
 }
 .swiperItem {
-  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  height: 1000px;
 }
 </style>
