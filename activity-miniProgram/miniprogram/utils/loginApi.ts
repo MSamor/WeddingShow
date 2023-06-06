@@ -1,5 +1,5 @@
 import { httpRequest } from './request'
-const baseUrl = require('./base').allBaseUrl.GDEnvs.host
+import baseUrl from './base'
 
 export default class userApi {
   static silentLogin = (data: any) =>

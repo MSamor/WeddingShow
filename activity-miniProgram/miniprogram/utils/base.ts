@@ -5,24 +5,10 @@
 const accountInfo = wx.getAccountInfoSync()
 const envVersion = accountInfo.miniProgram.envVersion || 'release'
 
-/**
-   * 国地服务器
-  */
 const GDEnvs = {
-  develop: {
-    host: 'http://localhost:8888',
-  },
-  trial: {
-    host: 'http://localhost:8888',
-  },
-  release: {
-    host: 'https://XXXXX.com',
-  },
+    develop: 'http://192.168.1.24:8888',
+    trial: 'http://192.168.1.24:8888',
+    release: 'https://XXXXX.com',
 }
 
-export class allBaseUrl {
-  /**
-   * 国地服务器
-  */
-  static GDEnvs = GDEnvs[envVersion]
-}
+export default GDEnvs[envVersion]

@@ -2,20 +2,23 @@
     "pages": [
         "pages/activity/activity",
         "pages/mine/mine",
-        "pages/bullet/bullet"
+        "pages/bullet/bullet",
+        "pages/imgs/imgs"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "婚礼活动",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
     },
     "sitemapLocation": "sitemap.json",
     "tabBar": {
         "color": "#666",
         "selectedColor": "#fd7143",
         "borderStyle": "white",
-        "list": [{
+        "list": [
+            {
                 "pagePath": "pages/activity/activity",
                 "text": "活动",
                 "iconPath": "img/xin-hunli.png",

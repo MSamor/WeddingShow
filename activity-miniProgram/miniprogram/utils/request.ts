@@ -1,5 +1,3 @@
-import api from './loginApi'
-
 /**
  * @description: HTTP请求方法枚举
  */

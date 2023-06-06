@@ -2,5 +2,6 @@
     "usingComponents": {
         "t-count-down": "tdesign-miniprogram/count-down/count-down"
     },
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": false
 }
