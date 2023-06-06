@@ -15,16 +15,16 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 @EnableConfigurationProperties(TokenProp.class)
-public class WeAccessTokens {
+public class WeJsApiTicket {
     @Autowired
-    TokenProp tokenProp;
+    WeAccessTokens weAccessTokens;
 
     /**
      * accessToken 有效期，默认 7000s
      */
     private long expiresIn = 7000L;
 
-    private String accessToken = "";
+    private String ticket = "";
 
     private CountDownLatch latch = null;
 
@@ -34,8 +34,8 @@ public class WeAccessTokens {
 
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public String getAccessToken() {
-        if (accessToken.isEmpty()) {
+    public String getTicket() {
+        if (ticket.isEmpty()) {
             final var latch = new CountDownLatch(1);
             this.latch = latch;
             try {
@@ -43,36 +43,35 @@ public class WeAccessTokens {
             } catch (Exception ignored) {
             }
         }
-        return accessToken;
+        return ticket;
     }
 
-    public synchronized String refreshAccessToken() {
-        final var url = "https://api.weixin.qq.com/cgi-bin/token";
+    public synchronized String refreshTicket() {
+        final var url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket";
         final var params = Map.of(
-                "grant_type", "client_credential",
-                "appid", tokenProp.wechat.miniProgram.appId,
-                "secret", tokenProp.wechat.miniProgram.appSecret
+                "access_token", weAccessTokens.getAccessToken(),
+                "type", "jsapi"
         );
-        var accessToken = "";
+        var ticket = "";
         try {
             final String response = HttpClient.get().get(url, params);
             if (response != null) {
                 final var jo = new JSONObject(response);
                 if (!jo.has("errcode") || jo.getInt("errcode") == 0) {
-                    accessToken = jo.optString("access_token");
+                    ticket = jo.optString("ticket");
                     expiresIn = jo.getLong("expires_in");
                 }
             }
         } catch (Exception e) {
-            log.error("微信获取accessToken失败", e);
+            log.error("微信获取ticket失败", e);
         }
-        this.accessToken = accessToken;
+        this.ticket = ticket;
         final var latch = this.latch;
         if (latch != null) {
             latch.countDown();
             this.latch = null;
         }
-        log.info("微信获取accessToken: " + accessToken);
-        return accessToken;
+        log.info("微信获取ticket: " + ticket);
+        return ticket;
     }
 }

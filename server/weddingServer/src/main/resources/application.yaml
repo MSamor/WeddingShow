@@ -1,10 +1,13 @@
 # 端口
 server:
   port: 8888
+  address: 0.0.0.0
 
 spring:
   application:
     name: weddingShow
+  profiles:
+    active: dev
 
   servlet:
     multipart:
@@ -22,10 +25,3 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-token:
-  wechat:
-    # 小程序配置
-    mini-program:
-      app-id: xxxxxxxxxxxxxx
-      app-secret: xxxxxxxxxxxxxx
