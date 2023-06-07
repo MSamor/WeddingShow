@@ -3,7 +3,10 @@
         "pages/activity/activity",
         "pages/mine/mine",
         "pages/bullet/bullet",
-        "pages/imgs/imgs"
+        "pages/manage/manage",
+        "pages/mine/activityManage/activityManage",
+        "pages/mine/bulletManage/bulletManage",
+        "pages/mine/imageManage/imageManage"
     ],
     "window": {
         "backgroundTextStyle": "light",

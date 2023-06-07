@@ -32,7 +32,7 @@ Page({
     toManage() {
         // TODO 密码访问
         wx.navigateTo({
-            url: "../imgs/imgs"
+            url: "../manage/manage"
         })
     },
     getUserProfile() {

@@ -1,35 +1,80 @@
-.demo-count-down-desc {
-    color: rgba(0, 0, 0, 0.6);
-    font-size: 28rpx;
-  }
-  
-  .demo-count-down-content {
-    margin: 32rpx 0 48rpx;
-  }
-  
-  .external-count {
-    color: #e34d59;
-    font-size: 36rpx;
-    line-height: 48rpx;
-    vertical-align: middle;
-  }
-  
-  .external-split {
-    font-size: 20rpx;
-    margin: 0 10rpx;
-  }
-  
-  .bg {
-      position: absolute;
-      z-index: -1;
-      height: 100vh;
-      width: 750rpx;
-  }
+.bg {
+    position: absolute;
+    z-index: -1;
+    height: 100vh;
+    width: 750rpx;
+}
 
-  .wrapper {
-      padding-top: 300rpx;
-  }
+.wrapper {
+    position: fixed;
+    bottom: 0;
+    height: 650rpx;
+    width: 100%;
+}
 
-  page {
+page {
     overflow: hidden;
-  }
+}
+
+.countdown-title {
+    text-align: center;
+    font-size: 60rpx;
+    color: #f5ccc7;
+}
+
+.countdown-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.external-count {
+    color: #f5ccc7;
+    margin-top: 20rpx;
+}
+
+.btn-join {
+    width: 300rpx;
+    background-color: #f5ccc7;
+    border-radius: 50rpx;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 100rpx;
+    margin-top: 20rpx;
+    box-shadow: 1rpx 1rpx 30rpx red;
+    color: red;
+    font-weight: bolder;
+}
+
+.text {
+    padding: 0 30rpx;
+    color: #f5ccc7;
+    margin-top: 20rpx;
+}
+
+.prizeList {
+    padding: 0 30rpx;
+    color: #f5ccc7;
+    text-align: center;
+    .prizeTitle {
+        font-size: 40rpx;
+    }
+    .prizeListItem {
+        font-size: 32rpx;
+        overflow-y: scroll;
+    }
+}
+
+.winList {
+    color: white;
+    text-align: center;
+    .winListTitle {
+        font-size: 40rpx;
+    }
+    .redemption {
+
+    }
+    .winItem {
+        font-size: 38rpx;
+    }
+}
