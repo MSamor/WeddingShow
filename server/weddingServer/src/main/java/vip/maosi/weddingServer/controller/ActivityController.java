@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import vip.maosi.weddingServer.domain.ActivityPrize;
 import vip.maosi.weddingServer.dto.ActivityInfoDto;
+import vip.maosi.weddingServer.dto.ActivityWinUser;
 import vip.maosi.weddingServer.response.RGenerator;
 import vip.maosi.weddingServer.response.ResEntity;
 import vip.maosi.weddingServer.service.ActivityJoinService;
 import vip.maosi.weddingServer.service.ActivityPrizeService;
 import vip.maosi.weddingServer.service.ActivityService;
 import vip.maosi.weddingServer.service.ActivityWinService;
+
+import java.util.List;
 
 @Validated
 @RestController
@@ -72,5 +75,16 @@ public class ActivityController {
         val openid = request.getHeader("openid");
         val triple = activityService.getActivityStatus(openid, code);
         return RGenerator.resCustom(triple.getLeft(), triple.getRight(), triple.getMiddle());
+    }
+
+    /**
+     * 查询中奖人列表
+     * @param code
+     * @return
+     */
+    @GetMapping("/getActivityWinList")
+    public ResEntity<List<ActivityWinUser>> getActivityWinList(@RequestParam @NotBlank(message = "code不能为空") String code) {
+        val list = activityService.getActivityWinList(code);
+        return RGenerator.resSuccess(list);
     }
 }

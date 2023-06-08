@@ -73,6 +73,12 @@ public class User implements Serializable {
     @TableField(value = "city")
     private String city;
 
+    @TableField(value = "ban")
+    private Boolean ban;
+
+    @TableField(value = "ban_date")
+    private Date banDate;
+
     private static final long serialVersionUID = 1L;
 
     public static final String COL_ID = "id";

@@ -41,6 +41,14 @@ public class ImageController {
         return RGenerator.resSuccess(image);
     }
 
+    @GetMapping("/deleteImage")
+    public ResEntity<Image> deleteImage(@PathVariable Integer id) {
+        val remove = imageService.removeById(id);
+        if (remove) return RGenerator.resSuccess();
+        else return RGenerator.resCustom(-2,"删除失败");
+
+    }
+
     @GetMapping("/list")
     public ResEntity<List<Image>> list() {
         val list = imageService.getImages();

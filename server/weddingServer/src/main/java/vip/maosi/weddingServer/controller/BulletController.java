@@ -65,6 +65,33 @@ public class BulletController {
     }
 
     /**
+     * 获取所有用户发布的弹幕
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/getBulletList")
+    public ResEntity<Page<Bullet>> getBulletList(@RequestParam @Min(message = "不能小于1", value = 1) Integer pageNum,
+                                                 @RequestParam @Min(message = "不能小于1", value = 1) Integer pageSize) {
+        val page = bulletService.page(new Page<>(pageNum, pageSize),
+                Wrappers.<Bullet>lambdaQuery()
+                        .orderByDesc(Bullet::getDate));
+        return RGenerator.resSuccess(page);
+    }
+
+
+    /**
+     * 禁用用户
+     * @return
+     */
+    @GetMapping("/banUserByBulletId")
+    public ResEntity<String> banUserByBulletId(@RequestParam @Min(message = "不能小于1", value = 1) Integer bulletId) {
+        val pair = bulletService.banUserByBulletId(bulletId);
+        if (pair.getLeft() == 0) return RGenerator.resSuccess(pair.getRight());
+        return RGenerator.resCustom(pair.getLeft(),pair.getRight());
+    }
+
+    /**
      * 发送弹幕
      *
      * @param text 发送文本

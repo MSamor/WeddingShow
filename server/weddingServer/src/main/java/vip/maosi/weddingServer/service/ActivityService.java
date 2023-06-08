@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import vip.maosi.weddingServer.domain.*;
 import vip.maosi.weddingServer.dto.ActivityInfoDto;
+import vip.maosi.weddingServer.dto.ActivityWinUser;
 import vip.maosi.weddingServer.mapper.ActivityMapper;
 import vip.maosi.weddingServer.service.wx.WXService;
 
@@ -29,6 +30,8 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
     ActivityWinService activityWinService;
     @Autowired
     WXService wxService;
+    @Autowired
+    UserService userService;
 
     public ActivityInfoDto getActivityInfo(String code) {
         final Activity activity = getActivity(code);
@@ -41,6 +44,29 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
                 .orderByAsc(ActivityPrize::getOrder));
         activityInfoDto.setPrizeList(activityPrize);
         return activityInfoDto;
+    }
+
+    public List<ActivityWinUser> getActivityWinList(String code) {
+        final Activity activity = getActivity(code);
+        if (activity == null) return null;
+        val activityWinList = activityWinService.list(Wrappers
+                .<ActivityWin>lambdaQuery()
+                .eq(ActivityWin::getActivityId, activity.getId()));
+        val winLists = new ArrayList<ActivityWinUser>();
+        for (ActivityWin win : activityWinList) {
+            // 查奖品
+            val activityPrize = activityPrizeService.getById(win.getActivityPrizeId());
+            // 查用户
+            val user = userService.getById(win.getUid());
+            val activityWinUser = new ActivityWinUser()
+                    .setUserName(user.getNickName())
+                    .setOpenid(user.getOpenid())
+                    .setAvatarUrl(user.getAvatarUrl())
+                    .setPrizeName(activityPrize.getPrizeName())
+                    .setPrizeNum(1);
+            winLists.add(activityWinUser);
+        }
+        return winLists;
     }
 
     public Pair<Integer, String> joinActivity(String openid, String code) {
