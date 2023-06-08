@@ -61,7 +61,6 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.1.7.Final</version>
 		</dependency>
 		<!-- commons-lang3 -->
 		<dependency>

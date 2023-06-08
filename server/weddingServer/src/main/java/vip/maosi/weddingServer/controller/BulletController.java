@@ -59,7 +59,8 @@ public class BulletController {
         if (user == null) return RGenerator.resCustom(-1, "用户不存在");
         val page = bulletService.page(new Page<>(pageNum, pageSize),
                 Wrappers.<Bullet>lambdaQuery()
-                        .eq(Bullet::getUid, user.getId()));
+                        .eq(Bullet::getUid, user.getId())
+                        .orderByDesc(Bullet::getDate));
         return RGenerator.resSuccess(page);
     }
 

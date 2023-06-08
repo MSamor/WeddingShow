@@ -71,9 +71,6 @@ public class ActivityController {
                                                       @RequestParam @NotBlank(message = "code不能为空") String code) {
         val openid = request.getHeader("openid");
         val triple = activityService.getActivityStatus(openid, code);
-        if (triple.getLeft() < 0) {
-            return RGenerator.resCustom(triple.getLeft(), triple.getRight(), triple.getMiddle());
-        }
-        return RGenerator.resSuccess(triple.getRight(), triple.getMiddle());
+        return RGenerator.resCustom(triple.getLeft(), triple.getRight(), triple.getMiddle());
     }
 }

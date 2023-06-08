@@ -148,8 +148,8 @@ public class GlobalErrorHandler {
         log.error(String.format("参数错误, method: %s, url: %s", request.getMethod(), url), exception);
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        var msg = "参数校验错误，请检查后重试!原因:" + exception.getMessage();
-        var res = RGenerator.resCustom(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg);
+        var msg = exception.getMessage();
+        var res = RGenerator.resCustom(-300, msg);
         var result = JsonUtils.toJson(res).getBytes(StandardCharsets.UTF_8);
         response.getOutputStream().write(result);
     }

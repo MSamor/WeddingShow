@@ -37,7 +37,8 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
         BeanUtils.copyProperties(activity, activityInfoDto);
         val activityPrize = activityPrizeService.list(Wrappers
                 .<ActivityPrize>lambdaQuery()
-                .eq(ActivityPrize::getActivityId, activity.getId()));
+                .eq(ActivityPrize::getActivityId, activity.getId())
+                .orderByAsc(ActivityPrize::getOrder));
         activityInfoDto.setPrizeList(activityPrize);
         return activityInfoDto;
     }
@@ -48,6 +49,7 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
         if (user == null) return Pair.of(-1, "用户不存在");
         if (activity == null) return Pair.of(-1, "活动不存在");
         val join = activityJoinService.getOne(Wrappers.<ActivityJoin>lambdaQuery().eq(ActivityJoin::getUid, user.getId()));
+        if (activity.getActivityEndDate().before(new Date())) return Pair.of(-1, "活动已截止");
         if (join != null) {
             return Pair.of(-1, "已加入活动");
         }

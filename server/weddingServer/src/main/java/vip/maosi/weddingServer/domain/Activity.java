@@ -45,7 +45,7 @@ public class Activity implements Serializable {
      * 活动描述
      */
     @TableField(value = "activity_desc")
-    private Integer activityDesc;
+    private String activityDesc;
 
     /**
      * Lucky draw，抽奖code

@@ -14,13 +14,10 @@ spring:
       max-file-size: 100MB
       max-request-size: 1000MB
 
-  datasource:
-    #测试环境
-    url: jdbc:mysql://localhost:3306/wedding_show?serverTimezone=GMT%2B8&characterEncoding=utf-8
-    username: root
-    password: root
-    hikari:
-      max-lifetime: 30000
+  jackson:
+    # 时间格式化
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
 
 mybatis-plus:
   configuration:
