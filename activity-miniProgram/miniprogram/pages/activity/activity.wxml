@@ -5,54 +5,30 @@
         <view class="countdown-box">
             <t-count-down t-class-count="external-count" t-class-split="external-split" content="default" time="{{ time }}" splitWithUnit millisecond size="large" />
         </view>
-        <view class="btn-join">
+        <view class="btn-join" wx:if="{{!join && !open}}" bindtap="joinActivity">
             立即参与抽奖
         </view>
+        <view class="btn-is-join" wx:if="{{join && !open}}">
+            已参与
+        </view>
+        <view class="btn-win" wx:if="{{join && open && !win}}">
+            未中奖
+        </view>
+        <view class="btn-is-win" wx:if="{{join && open && win}}">
+            已中奖：{{prizeName}}
+        </view>
         <view class="text">
-            今天呼声最高的人中奖概率最高哦，哈哈哈啊哈哈哈
+            {{activityInfo.activityDesc}}
         </view>
         <view class="prizeList">
             <view class="prizeTitle">
                 奖品列表
             </view>
             <view class="prizeListItem">
-                <view>1.百元红包 * 1</view>
-                <view>1.百元红包</view>
-                <view>1.百元红包</view>
-                <view>1.百元红包</view>
-                <view>1.百元红包</view>
+            <block wx:for="{{activityInfo.prizeList}}">
+                <view>{{(index+1)+"."+item.prizeName +" * " + item.count}}</view>
+            </block>
             </view>
-        </view>
-    </view>
-    <view class="winList" wx:if="{{false}}">
-        <view class="winListTitle">
-            中奖人列表：
-        </view>
-        <view class="redemption">
-            兑奖说明：请到xxx初出示中奖信息
-        </view>
-        <view style="overflow-y:scroll; height: 520rpx;">
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
-            <view class="winItem">貌似：百元红包</view>
         </view>
     </view>
 </view>

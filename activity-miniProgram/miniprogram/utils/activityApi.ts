@@ -1,20 +1,32 @@
 import { httpRequest } from './request'
 import baseUrl from './base'
 
-export default class userApi {
-  static silentLogin = (data: any) =>
+export default class activityApi {
+
+    /**
+     * 获取活动详情和奖品列表
+     */
+  static getActivityPrizes = (data: any) =>
     httpRequest.get<any>(
-      baseUrl + '/wx/silentLogin',
+      baseUrl + '/activity/getActivityPrizes',
       data
     )
 
-  static login = (data: any) =>
-    httpRequest.post<any>(
-      baseUrl + '/wx/login',
+    /**
+     * 加入活动
+     */
+  static joinActivity = (data: any) =>
+    httpRequest.get<any>(
+      baseUrl + '/activity/joinActivity',
       data
     )
-    static getUserInfo = () =>
+
+    /**
+     * 获取活动状态
+     */
+    static getActivityStatus = (data: any) =>
     httpRequest.get<any>(
-      baseUrl + '/wx/getUserInfo'
+      baseUrl + '/activity/getActivityStatus',
+      data
     )
 }

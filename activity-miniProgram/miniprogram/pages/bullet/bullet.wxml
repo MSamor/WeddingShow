@@ -1,20 +1,12 @@
 <view class="wrapper">
     <view class="scrollView">
-        <t-cell title="2023年5月30日15:15:48" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
-        <t-cell title="多行标题" description="一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容" hover />
+        <block wx:for="{{list}}">
+            <t-cell title="{{item.text}}" description="发送时间：{{item.date}}" hover />
+        </block>
     </view>
     <view class="pupBox">
-        <t-input label="" placeholder="请输入弹幕消息">
-            <t-button slot="suffix" theme="primary"> 立即发送 </t-button>
+        <t-input label="" value="{{text}}" placeholder="请输入弹幕消息" bind:change="onChange" cursor-spacing="{{10}}">
+            <t-button slot="suffix" theme="primary" bindtap="send"> 立即发送 </t-button>
         </t-input>
     </view>
 </view>

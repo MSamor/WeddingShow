@@ -33,7 +33,7 @@ page {
     margin-top: 20rpx;
 }
 
-.btn-join {
+.btn-join,.btn-is-join,.btn-win,.btn-is-win {
     width: 300rpx;
     background-color: #f5ccc7;
     border-radius: 50rpx;
@@ -44,6 +44,10 @@ page {
     box-shadow: 1rpx 1rpx 30rpx red;
     color: red;
     font-weight: bolder;
+}
+
+.btn-is-join {
+
 }
 
 .text {
@@ -62,19 +66,5 @@ page {
     .prizeListItem {
         font-size: 32rpx;
         overflow-y: scroll;
-    }
-}
-
-.winList {
-    color: white;
-    text-align: center;
-    .winListTitle {
-        font-size: 40rpx;
-    }
-    .redemption {
-
-    }
-    .winItem {
-        font-size: 38rpx;
     }
 }

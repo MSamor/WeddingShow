@@ -1,4 +1,5 @@
-// pages/activity/activity.ts
+import api from "../../utils/activityApi"
+import requestByOpenid from "../../utils/requestByOpenid"
 Page({
 
     /**
@@ -6,13 +7,78 @@ Page({
      */
     data: {
         time: 96 * 60 * 1000,
+        activityInfo: {},
+        join: false,
+        win: false,
+        open: false,
+        activityCode: "timePrize"
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        api.getActivityPrizes({ code: this.data.activityCode }).then((res) => {
+            let dateEnd = new Date(res.data.activityEndDate)
+            let nowDate = new Date()
 
+            this.setData({
+                activityInfo: res.data,
+                time: dateEnd.getTime() - nowDate.getTime()
+            })
+            requestByOpenid(() => {
+                this.getStatus()
+            })
+        })
+    },
+
+    getStatus() {
+        api.getActivityStatus({ code: this.data.activityCode }).then((resStatus) => {
+            console.log(resStatus);
+            if (resStatus.code == 0) {
+                this.setData({
+                    join: false
+                })
+            } else if (resStatus.code == 1) {
+                this.setData({
+                    join: true,
+                    open: false
+                })
+            } else if (resStatus.code == 2) {
+                // 中奖
+                this.setData({
+                    join: true,
+                    win: true,
+                    open: true,
+                    prizeName: resStatus.data.prizeName
+                })
+            } else if (resStatus.code == 3) {
+                // 中奖
+                this.setData({
+                    join: true,
+                    win: false,
+                    open: true
+                })
+            }
+        })
+    },
+
+    joinActivity() {
+        api.joinActivity({ code: this.data.activityCode }).then((res) => {
+            if (res.code == 200) {
+                wx.showToast({
+                    title: "加入成功"
+                })
+                requestByOpenid(() => {
+                    this.getStatus()
+                })
+            } else {
+                wx.showToast({
+                    title: res.msg,
+                    icon: "error"
+                })
+            }
+        })
     },
 
     /**
