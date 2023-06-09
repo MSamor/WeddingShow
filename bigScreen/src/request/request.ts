@@ -10,7 +10,7 @@ interface ResultData<T = any> extends Result {
     data?: T;
 }
 
-const URL: string = 'http://localhost:8888'
+const URL: string = 'http://192.168.1.24:8888'
 
 enum RequestEnums {
     TIMEOUT = 20000,

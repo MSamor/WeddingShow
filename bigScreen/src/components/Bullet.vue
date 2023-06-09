@@ -21,14 +21,14 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, Ref } from "vue";
-import socket from "@/request/socket";
+import listener2Callback from "@/request/socket";
 
-socket.onmessage = (event:any) => {
-  let data = JSON.parse(event.data);
+listener2Callback((data: any) => {
+  console.log("发送弹幕");
   if (data.code == 1) {
     addBarrage(data.data);
   }
-};
+});
 
 let avatar = ref("avatar");
 interface BarrageItem {

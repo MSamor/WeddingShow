@@ -24,10 +24,10 @@
 
 <script lang="ts" setup>
 import { getImageList } from "@/request/bullet";
-import { defineComponent, onMounted, reactive } from "vue";
+import { defineComponent, onMounted, reactive, ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper";
-import socket from "@/request/socket";
+import listener2Callback from "@/request/socket";
 import "swiper/css";
 
 let modules = [Autoplay];
@@ -41,9 +41,10 @@ interface image {
   fileSize: number;
   fileType: string;
   filename: string;
+  id: number;
 }
 
-let swiperList: image[] = reactive([]);
+let swiperList = ref<image[]>([]);
 
 onMounted(async () => {
   getImage();
@@ -55,17 +56,17 @@ const getImage = async () => {
   let data = await getImageList();
   data.data.forEach((el: image) => {
     el.fileData = "data:" + el.fileType + ";base64," + el.fileData;
-    swiperList.push(el);
+    swiperList.value.push(el);
   });
 };
 
-socket.onmessage = (event: any) => {
-  let data = JSON.parse(event.data);
-  console.log(data);
+listener2Callback((data: any) => {
+  console.log("同步图片");
   if (data.code == 2) {
+    swiperList.value = [];
     getImage();
   }
-};
+});
 </script>
 
 <style>
