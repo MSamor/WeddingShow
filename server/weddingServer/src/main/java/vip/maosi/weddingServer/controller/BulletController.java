@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.val;
+import org.apache.commons.lang3.tuple.Pair;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import vip.maosi.weddingServer.domain.Bullet;
 import vip.maosi.weddingServer.dto.BulletDto;
+import vip.maosi.weddingServer.dto.BulletManageDto;
 import vip.maosi.weddingServer.meta.SessionKeys;
 import vip.maosi.weddingServer.response.DefinedCode;
 import vip.maosi.weddingServer.response.RGenerator;
@@ -24,7 +27,9 @@ import vip.maosi.weddingServer.service.wx.WXService;
 import vip.maosi.weddingServer.util.JsonUtils;
 import vip.maosi.weddingServer.util.SessionManagerUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 弹幕相关接口
@@ -66,29 +71,48 @@ public class BulletController {
 
     /**
      * 获取所有用户发布的弹幕
+     *
      * @param pageNum
      * @param pageSize
      * @return
      */
     @GetMapping("/getBulletList")
-    public ResEntity<Page<Bullet>> getBulletList(@RequestParam @Min(message = "不能小于1", value = 1) Integer pageNum,
-                                                 @RequestParam @Min(message = "不能小于1", value = 1) Integer pageSize) {
+    public ResEntity<List<BulletManageDto>> getBulletList(@RequestParam @Min(message = "不能小于1", value = 1) Integer pageNum,
+                                                          @RequestParam @Min(message = "不能小于1", value = 1) Integer pageSize) {
         val page = bulletService.page(new Page<>(pageNum, pageSize),
                 Wrappers.<Bullet>lambdaQuery()
                         .orderByDesc(Bullet::getDate));
-        return RGenerator.resSuccess(page);
+        val list = new ArrayList<BulletManageDto>();
+        for (Bullet bullet : page.getRecords()) {
+            val bulletManageDto = new BulletManageDto();
+            BeanUtils.copyProperties(bullet, bulletManageDto);
+            val bulletItem = bulletService.getById(bullet.getId());
+            val user = userService.getById(bulletItem.getUid());
+            if (user.getBan() == null) bulletManageDto.setIsUserBan(false);
+            else
+                bulletManageDto.setIsUserBan(user.getBan());
+            list.add(bulletManageDto);
+        }
+        return RGenerator.resSuccess(list);
     }
 
 
     /**
      * 禁用用户
+     *
      * @return
      */
     @GetMapping("/banUserByBulletId")
-    public ResEntity<String> banUserByBulletId(@RequestParam @Min(message = "不能小于1", value = 1) Integer bulletId) {
-        val pair = bulletService.banUserByBulletId(bulletId);
+    public ResEntity<String> banUserByBulletId(@RequestParam @Min(message = "不能小于1", value = 1) Integer bulletId,
+                                               @RequestParam Boolean isBan) {
+        Pair<Integer, String> pair;
+        if (isBan) {
+            pair = bulletService.banUserByBulletId(bulletId);
+        } else {
+            pair = bulletService.runUserByBulletId(bulletId);
+        }
         if (pair.getLeft() == 0) return RGenerator.resSuccess(pair.getRight());
-        return RGenerator.resCustom(pair.getLeft(),pair.getRight());
+        return RGenerator.resCustom(pair.getLeft(), pair.getRight());
     }
 
     /**
@@ -103,6 +127,7 @@ public class BulletController {
         val openid = request.getHeader("openid");
         val user = wxService.getUser(openid);
         if (user == null) return RGenerator.resCustom(-1, "用户不存在");
+        if (user.getBan()) return RGenerator.resCustom(-3, "用户已禁用");
         val bullet = new Bullet()
                 .setDate(new Date())
                 .setUid(user.getId())
@@ -111,8 +136,8 @@ public class BulletController {
         if (save) {
             val bulletDto = new BulletDto();
             bulletDto.setUrl(user.getAvatarUrl())
-                            .setNickName(user.getNickName())
-                                    .setText(text);
+                    .setNickName(user.getNickName())
+                    .setText(text);
             sessionManagerUtils.sendMessageToAll(SessionKeys.WEDDING_SHOW.name(), "发送弹幕",
                     JsonUtils.toJson(bulletDto),
                     DefinedCode.BULLET);
