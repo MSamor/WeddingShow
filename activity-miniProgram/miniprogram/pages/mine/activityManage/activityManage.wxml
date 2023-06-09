@@ -1,2 +1,3 @@
-<!--pages/mine/activityManage/activityManage.wxml-->
-<text>pages/mine/activityManage/activityManage.wxml</text>
+<block wx:for="{{list}}">
+    <t-cell title="{{item.prizeName}}{{item.prizeNum}}" description="{{item.userName}}：{{item.openid}}" align="top" image="{{item.avatarUrl}}" hover bordered="{{false}}" t-class-title="t-class-title" />
+</block>

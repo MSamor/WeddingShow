@@ -1,29 +1,14 @@
-// pages/mine/imageManage/imageManage.ts
+import base from "../../../utils/base";
+import api from "../../../utils/manage/imageMangeApi"
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        originFiles: [
-            {
-                url: 'https://tdesign.gtimg.com/miniprogram/images/example4.png',
-                name: 'uploaded1.png',
-                type: 'image',
-            },
-            {
-                url: 'https://tdesign.gtimg.com/miniprogram/images/example6.png',
-                name: 'uploaded2.png',
-                type: 'image',
-            },
-            {
-                url: 'https://tdesign.gtimg.com/miniprogram/images/example5.png',
-                name: 'uploaded1.png',
-                type: 'image',
-            },
-        ],
+        originFiles: [] as any,
         gridConfig: {
-            column: 4,
+            column: 3,
             width: 160,
             height: 160,
         },
@@ -32,21 +17,56 @@ Page({
         },
     },
 
-    handleSuccess(e:any) {
-        const { files } = e.detail;
-        this.setData({
-            originFiles: files,
-        });
+    sendImgsToDisplay() {
+        api.sendImgsToDisplay().then((res) => {
+            if (res.code == 200) {
+                wx.showToast({
+                    title: "推送成功"
+                })
+            } else {
+                wx.showToast({
+                    title: res.msg,
+                    icon: "error"
+                })
+            }
+        })
     },
-    handleRemove(e:any) {
+
+    handleSuccess(e: any) {
+        const { files } = e.detail;
+        console.log(files);
+        for (const item of files) {
+            wx.uploadFile({
+                url: base + "/image/upload",
+                filePath: item.url,
+                name: 'file',
+                success: () => {
+                    this.setData({
+                        originFiles: files,
+                    });
+                    this.refresh()
+                }
+            })
+        }
+    },
+    handleRemove(e: any) {
         const { index } = e.detail;
         const { originFiles } = this.data;
-        originFiles.splice(index, 1);
-        this.setData({
-            originFiles,
-        });
+        console.log(index);
+        console.log(originFiles);
+        api.deleteImage({ id: originFiles[index].id }).then((res) => {
+            if (res.code == 200) {
+                wx.showToast({
+                    title: "刪除成功"
+                })
+                originFiles.splice(index, 1);
+                this.setData({
+                    originFiles,
+                });
+            }
+        })
     },
-    handleClick(e:any) {
+    handleClick(e: any) {
         console.log(e.detail.file);
     },
 
@@ -55,7 +75,27 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        this.refresh()
+    },
 
+    refresh() {
+        api.list().then((res) => {
+            if (res.code == 200) {
+                let list: any = []
+                res.data.map((e: any) => {
+                    let tempObj = {
+                        url: "data:" + e.fileType + ";base64," + e.fileData,
+                        name: e.filename,
+                        type: 'image',
+                        id: e.id
+                    }
+                    list.push(tempObj)
+                })
+                this.setData({
+                    originFiles: list
+                })
+            }
+        })
     },
 
     /**
@@ -90,7 +130,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        this.refresh()
     },
 
     /**

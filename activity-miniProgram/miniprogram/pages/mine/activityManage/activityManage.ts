@@ -1,18 +1,27 @@
-// pages/mine/activityManage/activityManage.ts
+import api from "../../../utils/manage/activityApiMange"
+import requestByOpenid from "../../../utils/requestByOpenid"
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        list: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-
+        api.getActivityPrizes({ code: "timePrize" }).then((res) => {
+            console.log(res);
+            if (res.code == 200) {
+                this.setData({
+                    list: res.data
+                })
+            }
+        })
     },
 
     /**

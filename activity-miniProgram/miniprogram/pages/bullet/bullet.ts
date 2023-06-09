@@ -34,6 +34,11 @@ Page({
                         title: "内容不能为空",
                         icon: "error"
                     })
+                } else {
+                    wx.showToast({
+                        title: res.msg,
+                        icon: "error"
+                    })
                 }
             })
         })

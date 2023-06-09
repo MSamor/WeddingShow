@@ -1,3 +1,5 @@
-<t-cell title="单行标题" hover>
-  <t-switch defaultValue="{{true}}" slot="note" />
-</t-cell>
+<block wx:for="{{list}}">
+    <t-cell title="{{item.text}}" hover description="{{item.date}}">
+        <t-switch bind:change="changeSwitch" value="{{item.isUserBan}}" slot="note" data-id="{{item.id}}" data-uid="{{item.uid}}"/>
+    </t-cell>
+</block>

@@ -1,6 +1,6 @@
 <view class="wrapper">
   <t-upload
-    media-type="{{['video','image']}}"
+    media-type="{{['image']}}"
     files="{{originFiles}}"
     gridConfig="{{gridConfig}}"
     bind:success="handleSuccess"
@@ -9,5 +9,5 @@
   />
 </view>
 <view class="btn">
-    <t-button theme="primary" size="large">确认推送</t-button>
+    <t-button theme="primary" size="large" bindtap="sendImgsToDisplay">确认推送</t-button>
 </view>
