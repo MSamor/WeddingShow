@@ -58,6 +58,7 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
             val activityPrize = activityPrizeService.getById(win.getActivityPrizeId());
             // 查用户
             val user = userService.getById(win.getUid());
+            if (user == null) continue;
             val activityWinUser = new ActivityWinUser()
                     .setUserName(user.getNickName())
                     .setOpenid(user.getOpenid())
