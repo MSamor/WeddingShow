@@ -2,7 +2,9 @@
     "usingComponents": {
         "t-button": "tdesign-miniprogram/button/button",
         "t-input": "tdesign-miniprogram/input/input",
-        "t-cell": "tdesign-miniprogram/cell/cell"
+        "t-cell": "tdesign-miniprogram/cell/cell",
+        "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar"
     },
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "弹幕列表"
 }

@@ -1,12 +1,24 @@
 <view class="wrapper">
     <view class="scrollView">
         <block wx:for="{{list}}">
-            <t-cell title="{{item.text}}" description="发送时间：{{item.date}}" hover />
+            <!-- <t-cell title="{{item.text}}" description="发送时间：{{item.date}}" hover /> -->
+            <view class="bulletBox">
+                <view class="bulletText">
+                    <t-notice-bar visible="{{true}}"  
+                    marquee="{{marqueeOptions}}" 
+                    prefixIcon="{{null}}"  
+                    content="{{item.text}}"
+                    t-class-content="t-class-content"></t-notice-bar>
+                </view>
+                <view class="bulletTime">
+                    发送时间：{{item.date}}
+                </view>
+            </view>
         </block>
     </view>
     <view class="pupBox">
-        <t-input label="" value="{{text}}" placeholder="请输入弹幕消息" bind:change="onChange" cursor-spacing="{{10}}">
-            <t-button slot="suffix" theme="primary" bindtap="send"> 立即发送 </t-button>
+        <t-input label="" value="{{text}}" placeholder="新婚快乐~" bind:change="onChange" cursor-spacing="{{10}}">
+            <t-button slot="suffix" theme="light" icon="heart-filled" bindtap="send" shape="round"> 立即发送 </t-button>
         </t-input>
     </view>
 </view>

@@ -17,9 +17,11 @@ App<IAppOption>({
                                 api.getUserInfo().then((resUser) => {
                                     if (resUser.code == 200) {
                                         this.globalData.userInfo = resUser.data
+                                        resolve()
+                                    } else {
+                                        reject();
                                     }
                                 })
-                                resolve()
                             }
                         }).catch((err) => {
                             reject(err);

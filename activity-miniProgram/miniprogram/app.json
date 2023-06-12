@@ -12,14 +12,14 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "婚礼活动",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true
+        "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json",
     "tabBar": {
-        "color": "#666",
-        "selectedColor": "#fd7143",
+        "color": "#fff",
+        "selectedColor": "#f3c052",
         "borderStyle": "white",
+        "backgroundColor": "#d50f1a",
         "list": [
             {
                 "pagePath": "pages/activity/activity",

@@ -1,5 +1,8 @@
 import api from "../../utils/activityApi"
 import requestByOpenid from "../../utils/requestByOpenid"
+import getUserInfo from '../../utils/common'
+let app = getApp()
+
 Page({
 
     /**
@@ -64,20 +67,32 @@ Page({
     },
 
     joinActivity() {
-        api.joinActivity({ code: this.data.activityCode }).then((res) => {
-            if (res.code == 200) {
-                wx.showToast({
-                    title: "加入成功"
-                })
-                requestByOpenid(() => {
-                    this.getStatus()
-                })
-            } else {
-                wx.showToast({
-                    title: res.msg,
-                    icon: "error"
-                })
-            }
+        if (!app.globalData.userInfo.nickName) {
+            this.joinActivityApi()
+            return;
+        }
+        getUserInfo().then(() => {
+            this.joinActivityApi()
+        })
+    },
+
+    joinActivityApi() {
+        requestByOpenid(() => {
+            api.joinActivity({ code: this.data.activityCode }).then((res) => {
+                if (res.code == 200) {
+                    wx.showToast({
+                        title: "加入成功"
+                    })
+                    requestByOpenid(() => {
+                        this.getStatus()
+                    })
+                } else {
+                    wx.showToast({
+                        title: res.msg,
+                        icon: "error"
+                    })
+                }
+            })
         })
     },
 

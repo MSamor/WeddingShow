@@ -7,10 +7,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-        text: "",
+        text: "新婚快乐~",
         pageSize: 10,
         pageNum: 1,
-        list: []
+        list: [],
+        marqueeOptions: {
+            speed: 50,
+            loop: -1,
+            delay: 0,
+          },
     },
 
     onChange(val: any) {

@@ -1,4 +1,4 @@
-.block {
+.blockBoxs {
     display: block;
     background-color: #fdfdfd;
     padding-top: 50rpx;
@@ -17,6 +17,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.loginBtn {
+    width: 200rpx;
+    height: 80rpx;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50rpx;
+    text-align: center;
+    line-height: 80rpx;
+    color: white;
+    margin-left: 30rpx;
+    box-shadow: 0 0 20rpx rgb(228, 228, 228);
 }
 
 .no-login {
@@ -46,3 +58,34 @@
     height: 500rpx;
     width: 200rpx;
 }
+
+.block {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    background: #fff;
+    border-radius: 46rpx;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-btn {
+    position: absolute;
+    left: 50%;
+    margin-left: -32rpx;
+    bottom: calc(-1 * (48rpx + 64rpx));
+    z-index: 999999999;
+  }
+
+  .inputBox {
+      height: 100rpx;
+      margin-bottom: 100rpx;
+  }
+  
+  .wrapper {
+    margin: 32rpx;
+    display: block;
+  }

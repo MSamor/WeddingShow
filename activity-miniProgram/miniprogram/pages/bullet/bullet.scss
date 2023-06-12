@@ -6,9 +6,50 @@
 .scrollView {
     overflow-y: scroll;
 }
+
 .pupBox {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    box-shadow: 0 0 10rpx rgb(194, 194, 194);
+}
+
+.bulletBox {
+    height: 200rpx;
+    width: 700rpx;
+    background-color: #dc8cb6;
+    box-shadow: 10rpx 10rpx 10rpx rgb(219, 219, 219);
+    margin: 0 auto;
+    margin-top: 10rpx;
+    border-radius: 20rpx;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bulletText {
+    text-align: center;
+    width: 600rpx;
+    margin-bottom: 20rpx;
+}
+
+.t-notice-bar--info {
+    background-color: transparent!important;
+    width: 500rpx;
+    margin: 0 auto;
+}
+
+.bulletTime {
+    position: absolute;
+    bottom: 10rpx;
+    right: 20rpx;
+    font-size: 24rpx;
+    color: white;
+}
+
+.t-class-content {
+    font-size: 40rpx!important;
+    color: rgb(255, 206, 206);
 }

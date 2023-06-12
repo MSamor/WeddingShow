@@ -1,8 +1,10 @@
 const app = getApp<IAppOption>()
-import api from '../../utils/loginApi'
+import getUserInfo from '../../utils/common'
+import manage from '../../utils/manage'
+
 Page({
     data: {
-        userInfo: {},
+        userInfo: {} as any,
         hasUserInfo: false,
         canIUseGetUserProfile: false,
 
@@ -14,6 +16,8 @@ Page({
             loop: -1,
             delay: 0,
         },
+        pwd: "",
+        visible: false
     },
     onLoad() {
         // @ts-ignore
@@ -30,35 +34,58 @@ Page({
         }
     },
     toManage() {
-        // TODO 密码访问
-        wx.navigateTo({
-            url: "../manage/manage"
-        })
-    },
-    getUserProfile() {
-        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-        wx.getUserProfile({
-            desc: '展示用户信息',
-            success: (res) => {
+        manage.login({ pwd: this.data.pwd }).then((res) => {
+            if (res.code == 200) {
                 this.setData({
-                    userInfo: res.userInfo,
-                    hasUserInfo: true
+                    pwd: "",
+                    visible: false
                 })
-                api.login(res.userInfo)
-                app.globalData.userInfo = res.userInfo
-                wx.showToast({
-                    title: '更新成功',
-                    icon: 'success',
-                    duration: 2000
+                wx.navigateTo({
+                    url: "../manage/manage"
                 })
-            },
-            fail: () => {
+            } else {
                 wx.showToast({
-                    title: '更新失败',
-                    icon: 'error',
-                    duration: 2000
+                    title: "密码错误",
+                    icon: "error"
                 })
             }
+        })
+
+    },
+
+    getUserProfile() {
+        getUserInfo().then((res) => {
+            this.setData({
+                userInfo: res,
+                hasUserInfo: true
+            })
+        })
+    },
+
+    handlePopup(e: any) {
+        const { item } = e.currentTarget.dataset;
+        this.setData(
+            {
+                cur: item,
+            },
+            () => {
+                this.setData({ visible: true });
+            },
+        );
+    },
+    onVisibleChange(e: any) {
+        this.setData({
+            visible: e.detail.visible,
+        });
+    },
+    onClose() {
+        this.setData({
+            visible: false,
+        });
+    },
+    onChange(e: any) {
+        this.setData({
+            pwd: e.detail.value
         })
     }
 })
