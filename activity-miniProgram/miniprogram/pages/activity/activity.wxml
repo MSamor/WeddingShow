@@ -6,7 +6,7 @@
             <t-count-down t-class-count="external-count" t-class-split="external-split" content="default" time="{{ time }}" splitWithUnit millisecond size="large" />
         </view>
         <view class="btn-join" wx:if="{{!join && !open}}" bindtap="joinActivity">
-            发送弹幕即可参与抽奖
+            立即参与抽奖
         </view>
         <view class="btn-is-join" wx:if="{{join && !open}}">
             已参与

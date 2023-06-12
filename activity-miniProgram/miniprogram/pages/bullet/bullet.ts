@@ -1,8 +1,9 @@
 import api from "../../utils/bulletApi"
 import requestByOpenid from "../../utils/requestByOpenid"
+import getUserInfo from '../../utils/common'
+let app = getApp()
 
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -15,7 +16,7 @@ Page({
             speed: 50,
             loop: -1,
             delay: 0,
-          },
+        },
     },
 
     onChange(val: any) {
@@ -24,30 +25,39 @@ Page({
         })
     },
     send() {
+        if (!!app.globalData.userInfo.nickName) {
+            this.apiSend()
+            return;
+        }
         requestByOpenid(() => {
-            api.sendBullet({ text: this.data.text }).then((res) => {
-                if (res.code == 200) {
-                    wx.showToast({
-                        title: "发送成功"
-                    })
-                    this.setData({
-                        text: ""
-                    })
-                    this.getPage(1, 20, true)
-                } else if (res.code == -300) {
-                    wx.showToast({
-                        title: "内容不能为空",
-                        icon: "error"
-                    })
-                } else {
-                    wx.showToast({
-                        title: res.msg,
-                        icon: "error"
-                    })
-                }
+            getUserInfo().then(() => {
+                this.apiSend()
             })
         })
+    },
 
+    apiSend() {
+        api.sendBullet({ text: this.data.text }).then((res) => {
+            if (res.code == 200) {
+                wx.showToast({
+                    title: "发送成功"
+                })
+                this.setData({
+                    text: ""
+                })
+                this.getPage(1, 20, true)
+            } else if (res.code == -300) {
+                wx.showToast({
+                    title: "内容不能为空",
+                    icon: "error"
+                })
+            } else {
+                wx.showToast({
+                    title: res.msg,
+                    icon: "error"
+                })
+            }
+        })
     },
 
     /**

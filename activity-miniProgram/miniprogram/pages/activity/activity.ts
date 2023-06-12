@@ -67,7 +67,7 @@ Page({
     },
 
     joinActivity() {
-        if (!app.globalData.userInfo.nickName) {
+        if (!!app.globalData.userInfo.nickName) {
             this.joinActivityApi()
             return;
         }
