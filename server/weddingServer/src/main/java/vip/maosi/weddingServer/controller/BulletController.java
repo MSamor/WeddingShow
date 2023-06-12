@@ -88,6 +88,7 @@ public class BulletController {
             BeanUtils.copyProperties(bullet, bulletManageDto);
             val bulletItem = bulletService.getById(bullet.getId());
             val user = userService.getById(bulletItem.getUid());
+            if (user == null) continue;
             if (user.getBan() == null) bulletManageDto.setIsUserBan(false);
             else
                 bulletManageDto.setIsUserBan(user.getBan());
@@ -127,7 +128,7 @@ public class BulletController {
         val openid = request.getHeader("openid");
         val user = wxService.getUser(openid);
         if (user == null) return RGenerator.resCustom(-1, "用户不存在");
-        if (user.getBan()) return RGenerator.resCustom(-3, "用户已禁用");
+        if (user.getBan() != null && user.getBan()) return RGenerator.resCustom(-3, "用户已禁用");
         val bullet = new Bullet()
                 .setDate(new Date())
                 .setUid(user.getId())
