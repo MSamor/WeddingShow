@@ -43,6 +43,8 @@ const messages: Ref<BarrageItem[]> = ref([]);
 const barrageItemHeight: number = 80;
 const screenWith: number = window.innerWidth;
 
+let heightArr = [0, 100, 200, 300, 400, 500, 600];
+
 let timer = null;
 
 onMounted(() => {
@@ -65,7 +67,7 @@ const addBarrage = (text: string) => {
   const item = {
     message: bullet.text,
     color: "#191a23",
-    top: Math.random() * 1000,
+    top: heightArr[parseInt((Math.random() * 7).toFixed(0))],
     right: screenWith,
     nickName: bullet.nickName,
     url: bullet.url,
