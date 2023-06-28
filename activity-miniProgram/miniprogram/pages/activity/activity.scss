@@ -7,8 +7,15 @@
 
 .wrapper {
     position: fixed;
-    bottom: 0;
+    top: 200rpx;
     height: 650rpx;
+    width: 100%;
+}
+
+.wrapperBottom {
+    position: fixed;
+    bottom: 0;
+    height: 450rpx;
     width: 100%;
 }
 
@@ -19,7 +26,9 @@ page {
 .countdown-title {
     text-align: center;
     font-size: 60rpx;
-    color: #f5ccc7;
+    color: #f2786d;
+    font-family: cursive;
+    font-weight: 900;
 }
 
 .countdown-box {
@@ -29,11 +38,15 @@ page {
 }
 
 .external-count {
-    color: #f5ccc7;
+    color: red;
+    font-size: 60rpx;
     margin-top: 20rpx;
 }
 
-.btn-join,.btn-is-join,.btn-win,.btn-is-win {
+.btn-join,
+.btn-is-join,
+.btn-win,
+.btn-is-win {
     width: 400rpx;
     background-color: #f5ccc7;
     border-radius: 50rpx;
@@ -46,25 +59,139 @@ page {
     font-weight: bolder;
 }
 
-.btn-is-join {
-
-}
+.btn-is-join {}
 
 .text {
     padding: 0 30rpx;
-    color: #f5ccc7;
+    color: #fb8d9a;
     margin-top: 20rpx;
 }
 
 .prizeList {
     padding: 0 30rpx;
-    color: #f5ccc7;
+    color: #ff5534;
+    font-family: monospace;
+    font-weight: bolder;
     text-align: center;
+
     .prizeTitle {
         font-size: 40rpx;
     }
+
     .prizeListItem {
         font-size: 32rpx;
+        width: 300rpx;
+        margin: 0 auto;
+        border-radius: 30rpx;
+        margin-top: 10rpx;
         overflow-y: scroll;
+        border: 1px solid gold;
     }
+}
+
+@keyframes scale {
+    0% {
+        font-size: 36px;
+    }
+
+    50% {
+        font-size: 40px;
+    }
+
+    100% {
+        font-size: 36px;
+    }
+}
+
+.animated-text {
+    animation-name: scale;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shine {
+    0% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+
+    50% {
+        box-shadow: 0 0 10px 3px gold;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+.shining-box {
+    animation-name: shine;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.jump-text {
+    display: inline-block;
+    animation-name: jump;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+.jump-text:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.jump-text:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.jump-text:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.jump-text:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.jump-text:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.jump-text:nth-child(6) {
+    animation-delay: 1s;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10rpx);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.wave-text {
+    position: relative;
+    animation-name: wave;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    margin-top: 10rpx;
 }

@@ -1,34 +1,44 @@
-<image src="../../img/bg.png" mode="" class="bg" />
+<image src="../../img/wedding.jpg" mode="" class="bg" />
+<!-- 顶部 -->
 <view class="wrapper">
     <view wx:if="{{true}}">
-        <view class="countdown-title"> 开奖倒计时 </view>
+        <view class="countdown-title animated-text"> 开奖倒计时 </view>
         <view class="countdown-box">
             <t-count-down t-class-count="external-count" t-class-split="external-split" content="default" time="{{ time }}" splitWithUnit millisecond size="large" />
         </view>
-        <view class="btn-join" wx:if="{{!join && !open}}" bindtap="joinActivity">
-            立即参与抽奖
+    </view>
+</view>
+<!-- 底部 -->
+<view class="wrapperBottom">
+    <view class="btn-join shining-box" wx:if="{{!join && !open}}" bindtap="joinActivity">
+        <span class="jump-text">立</span>
+        <span class="jump-text">即</span>
+        <span class="jump-text">参</span>
+        <span class="jump-text">与</span>
+        <span class="jump-text">抽</span>
+        <span class="jump-text">奖</span>
+        <!-- 立即参与抽奖 -->
+    </view>
+    <view class="btn-is-join" wx:if="{{join && !open}}">
+        已参与
+    </view>
+    <view class="btn-win" wx:if="{{join && open && !win}}">
+        未中奖
+    </view>
+    <view class="btn-is-win" wx:if="{{join && open && win}}">
+        已中奖：{{prizeName}}
+    </view>
+    <view class="text">
+        {{activityInfo.activityDesc}}
+    </view>
+    <view class="prizeList">
+        <view class="prizeTitle">
+            奖品列表
         </view>
-        <view class="btn-is-join" wx:if="{{join && !open}}">
-            已参与
-        </view>
-        <view class="btn-win" wx:if="{{join && open && !win}}">
-            未中奖
-        </view>
-        <view class="btn-is-win" wx:if="{{join && open && win}}">
-            已中奖：{{prizeName}}
-        </view>
-        <view class="text">
-            {{activityInfo.activityDesc}}
-        </view>
-        <view class="prizeList">
-            <view class="prizeTitle">
-                奖品列表
-            </view>
-            <view class="prizeListItem">
+        <view class="prizeListItem">
             <block wx:for="{{activityInfo.prizeList}}">
-                <view>{{(index+1)+"."+item.prizeName +" * " + item.count}}</view>
+                <view class="wave-text">{{item.prizeName +" * " + item.count}}</view>
             </block>
-            </view>
         </view>
     </view>
 </view>

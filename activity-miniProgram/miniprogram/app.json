@@ -16,10 +16,10 @@
     },
     "sitemapLocation": "sitemap.json",
     "tabBar": {
-        "color": "#fff",
-        "selectedColor": "#f3c052",
+        "color": "#666666",
+        "selectedColor": "#ff0000",
         "borderStyle": "white",
-        "backgroundColor": "#d50f1a",
+        "backgroundColor": "#d4f9ff",
         "list": [
             {
                 "pagePath": "pages/activity/activity",
