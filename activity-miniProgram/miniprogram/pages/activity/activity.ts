@@ -9,18 +9,21 @@ Page({
      * 页面的初始数据
      */
     data: {
-        time: 96 * 60 * 1000,
+        time: 0,
         activityInfo: {},
         join: false,
         win: false,
         open: false,
-        activityCode: "timePrize"
+        activityCode: "timePrize",
+        fontSize: 66,
+        animationData: {}
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        this.scaleAnimation()
         api.getActivityPrizes({ code: this.data.activityCode }).then((res) => {
             let dateEnd = new Date(res.data.activityEndDate)
             let nowDate = new Date()
@@ -36,8 +39,11 @@ Page({
     },
 
     getStatus() {
+        wx.showLoading({
+            title: "加载中…",
+            mask: true
+        })
         api.getActivityStatus({ code: this.data.activityCode }).then((resStatus) => {
-            console.log(resStatus);
             if (resStatus.code == 0) {
                 this.setData({
                     join: false
@@ -63,6 +69,8 @@ Page({
                     open: true
                 })
             }
+        }).finally(() => {
+            wx.hideLoading()
         })
     },
 
@@ -96,6 +104,10 @@ Page({
         })
     },
 
+    finish() {
+        this.getStatus()
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -107,7 +119,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
     },
 
     /**
@@ -143,5 +154,33 @@ Page({
      */
     onShareAppMessage() {
 
+    },
+
+    // 定义循环动画函数
+    scaleAnimation: function () {
+        this.anni()
+        setInterval(() => {
+            this.anni()
+        }, 2000)
+    },
+
+    anni: function () {
+        const animation = wx.createAnimation({
+            duration: 1000,
+            timingFunction: 'linear'
+        })
+        animation.scale(1.2).step()
+        setTimeout(() => {
+            animation.scale(1).step()
+            this.setData({
+                animationData: animation.export(),
+                fontSize: this.data.fontSize
+            })
+        }, 1000)
+
+        this.setData({
+            animationData: animation.export(),
+            fontSize: this.data.fontSize
+        })
     }
 })

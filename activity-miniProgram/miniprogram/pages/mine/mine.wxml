@@ -1,23 +1,26 @@
-<view class="userinfo">
+<view class="topBox">
+    <view class="userinfo">
         <image wx:if="{{userInfo.avatarUrl}}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <t-avatar wx:if="{{!userInfo.avatarUrl}}" class="avatar-example" icon="user" />
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         <view wx:if="{{!userInfo.avatarUrl}}" class="loginBtn" bindtap="getUserProfile">立即登录</view>
-        <view wx:if="{{userInfo.avatarUrl}}" class="loginBtn" bindtap="getUserProfile">更新头像</view>
+    </view>
+    <view wx:if="{{userInfo.avatarUrl}}" class="loginBtn" bindtap="getUserProfile">更新头像</view>
 </view>
-<view class="blockBoxs">
-    <t-grid column="{{1}}" theme="card">
-        <t-grid-item text="管理中心" description="管理弹幕和发布人" image="{{img1}}" bind:tap="handlePopup" />
-    </t-grid>
+<view class="blockBoxs" bind:tap="handlePopup">
+    <t-icon  name="star" size="150rpx" />
+    <view class="blockBoxsText">
+        管理中心
+    </view>
 </view>
 
 
 <t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="center">
-  <view class="block">
-    <view class="inputBox">
-        <t-input type="password" bind:change="onChange" label="密码" placeholder="请输入密码"></t-input>
+    <view class="block">
+        <view class="inputBox">
+            <t-input type="password" bind:change="onChange" label="密码" placeholder="请输入密码"></t-input>
+        </view>
+        <t-button theme="danger" variant="outline" shape="round" bindtap="toManage"> 确认 </t-button>
+        <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose" />
     </view>
-    <t-button bindtap="toManage">确认</t-button>
-    <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose" />
-  </view>
 </t-popup>

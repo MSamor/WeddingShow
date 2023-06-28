@@ -2,7 +2,6 @@ import api from "../../utils/bulletApi"
 import requestByOpenid from "../../utils/requestByOpenid"
 import getUserInfo from '../../utils/common'
 let app = getApp()
-
 Page({
     /**
      * 页面的初始数据
@@ -17,6 +16,11 @@ Page({
             loop: -1,
             delay: 0,
         },
+        current: 0,
+        autoplay: true,
+        duration: 500,
+        interval: 3000,
+        swiperList: [],
     },
 
     onChange(val: any) {
@@ -57,6 +61,18 @@ Page({
                     icon: "error"
                 })
             }
+        })
+    },
+
+    apiSwiper() {
+        api.getSwiper().then((res) => {
+            let arr: any = []
+            res.data.forEach((el: any) => {
+                arr.push("data:" + el.fileType + ";base64," + el.fileData)
+            });
+            this.setData({
+                swiperList: arr
+            })
         })
     },
 
@@ -102,7 +118,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        this.apiSwiper()
     },
 
     /**

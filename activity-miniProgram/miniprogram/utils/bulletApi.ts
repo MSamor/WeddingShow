@@ -20,4 +20,9 @@ export default class bulletApi {
       baseUrl + '/bullet/sendBullet',
       data
     )
+
+  static getSwiper = () =>
+  httpRequest.get<any>(
+    baseUrl + '/image/list',
+  )
 }

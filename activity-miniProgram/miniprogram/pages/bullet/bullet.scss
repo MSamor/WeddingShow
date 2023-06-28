@@ -1,5 +1,6 @@
 .wrapper {
     position: relative;
+    margin-top: 430rpx;
     padding-bottom: 150rpx;
 }
 
@@ -18,27 +19,25 @@
 .bulletBox {
     height: 200rpx;
     width: 700rpx;
-    background-color: #dc8cb6;
-    box-shadow: 10rpx 10rpx 10rpx rgb(219, 219, 219);
+    background-color: #ffffff;
+    box-shadow: 0rpx 0rpx 10rpx #d8d8d8;
     margin: 0 auto;
     margin-top: 10rpx;
     border-radius: 20rpx;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
 }
-
-.bulletText {
-    text-align: center;
-    width: 600rpx;
-    margin-bottom: 20rpx;
-}
-
 .t-notice-bar--info {
     background-color: transparent!important;
     width: 500rpx;
     margin: 0 auto;
+}
+
+.sendMsgShow {
+    text-align: center;
+    padding-top: 100rpx;
+    font-size: 50rpx;
+    color: #d54941;
 }
 
 .bulletTime {
@@ -46,10 +45,59 @@
     bottom: 10rpx;
     right: 20rpx;
     font-size: 24rpx;
-    color: white;
+    color: #3a4047;
 }
 
 .t-class-content {
     font-size: 40rpx!important;
-    color: rgb(255, 206, 206);
+    color: #d54941;
 }
+
+.card-theme {
+    --td-swiper-radius: 0;
+    --td-swiper-item-padding: 0 12rpx;
+    --td-swiper-nav-dot-color: #e7e7e7;
+    --td-swiper-nav-dot-active-color: #0052d9;
+  
+    padding-bottom: 18px;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 0 10rpx rgb(209, 209, 209);
+  }
+  
+  .scale-candidate {
+    height: 126px !important;
+  }
+
+  @keyframes color-change {
+    0% { color: red; }
+    25% { color: rgb(247, 0, 255); }
+    50% { color: rgb(23, 56, 248); }
+    75% { color: rgb(233, 229, 24); }
+    100% { color: rgb(243, 32, 85); }
+  }
+  
+  .colorful-text {
+    animation-name: color-change,zoom;
+    animation-duration: 5s,2s;
+    animation-timing-function: linear,ease-in-out;
+    animation-iteration-count: infinite,infinite;
+    animation-direction: alternate;
+    
+    text-align: center;
+    margin-top: 66rpx;
+  }
+  
+  @keyframes zoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  

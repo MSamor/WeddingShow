@@ -1,8 +1,22 @@
 .blockBoxs {
     display: block;
     background-color: #fdfdfd;
-    padding-top: 50rpx;
+    height: 300rpx;
+    width: 300rpx;
+    border-radius: 30rpx;
+    margin: 0 auto;
+    margin-top: 50rpx;
+    text-align: center;
+    box-shadow: 0 0 30rpx 4rpx rgb(219, 219, 219);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .blockBoxsText {
+        margin-top: 10rpx;
+    }
 }
+
 .userinfo-avatar {
     overflow: hidden;
     width: 128rpx;
@@ -12,23 +26,34 @@
 }
 
 .userinfo {
-    height: 300rpx;
-    width: 750rpx;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.topBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400rpx;
+    width: 750rpx;
+    box-shadow: 0 0 30rpx 3rpx rgb(240, 240, 240);
+    padding-bottom: 10rpx;
 }
 
 .loginBtn {
     width: 200rpx;
     height: 80rpx;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(36, 157, 255);
     border-radius: 50rpx;
     text-align: center;
     line-height: 80rpx;
     color: white;
-    margin-left: 30rpx;
+    margin: 0 auto;
     box-shadow: 0 0 20rpx rgb(228, 228, 228);
+    margin-top: 50rpx;
 }
 
 .no-login {
@@ -43,9 +68,9 @@
 }
 
 .login {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-btn {
@@ -70,22 +95,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
-  .close-btn {
+}
+
+.close-btn {
     position: absolute;
     left: 50%;
     margin-left: -32rpx;
     bottom: calc(-1 * (48rpx + 64rpx));
     z-index: 999999999;
-  }
+}
 
-  .inputBox {
-      height: 100rpx;
-      margin-bottom: 100rpx;
-  }
-  
-  .wrapper {
+.inputBox {
+    height: 100rpx;
+    margin-bottom: 100rpx;
+}
+
+.wrapper {
     margin: 32rpx;
     display: block;
-  }
+}

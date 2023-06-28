@@ -3,7 +3,9 @@
         "t-button": "tdesign-miniprogram/button/button",
         "t-input": "tdesign-miniprogram/input/input",
         "t-cell": "tdesign-miniprogram/cell/cell",
-        "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar"
+        "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
+        "t-swiper": "tdesign-miniprogram/swiper/swiper",
+        "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav"
     },
     "enablePullDownRefresh": true,
     "navigationBarTitleText": "弹幕列表"

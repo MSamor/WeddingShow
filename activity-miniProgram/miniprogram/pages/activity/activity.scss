@@ -25,10 +25,11 @@ page {
 
 .countdown-title {
     text-align: center;
-    font-size: 60rpx;
     color: #f2786d;
-    font-family: cursive;
     font-weight: 900;
+    animation-name: myScale;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
 }
 
 .countdown-box {
@@ -59,8 +60,6 @@ page {
     font-weight: bolder;
 }
 
-.btn-is-join {}
-
 .text {
     padding: 0 30rpx;
     color: #fb8d9a;
@@ -87,26 +86,6 @@ page {
         overflow-y: scroll;
         border: 1px solid gold;
     }
-}
-
-@keyframes scale {
-    0% {
-        font-size: 36px;
-    }
-
-    50% {
-        font-size: 40px;
-    }
-
-    100% {
-        font-size: 36px;
-    }
-}
-
-.animated-text {
-    animation-name: scale;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
 }
 
 @keyframes shine {
