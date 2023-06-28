@@ -30,7 +30,7 @@ Page({
 
             this.setData({
                 activityInfo: res.data,
-                time: dateEnd.getTime() - nowDate.getTime()
+                time: dateEnd.getTime() - nowDate.getTime() + 3000
             })
             requestByOpenid(() => {
                 this.getStatus()
@@ -44,6 +44,8 @@ Page({
             mask: true
         })
         api.getActivityStatus({ code: this.data.activityCode }).then((resStatus) => {
+            console.log(resStatus);
+            
             if (resStatus.code == 0) {
                 this.setData({
                     join: false
@@ -104,7 +106,7 @@ Page({
         })
     },
 
-    finish() {
+    finishActivity() {
         this.getStatus()
     },
 
