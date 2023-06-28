@@ -89,47 +89,49 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
     }
 
     public Triple<Integer, ActivityPrize, String> getActivityStatus(String openid, String code) {
-        val activity = getActivity(code);
-        val user = wxService.getUser(openid);
-        if (user == null) return Triple.of(-1, null, "用户不存在");
-        if (activity == null) return Triple.of(-1, null, "活动不存在");
-        val exists = activityJoinService.getBaseMapper().exists(Wrappers.<ActivityJoin>lambdaQuery()
-                .eq(ActivityJoin::getActivityId, activity.getId())
-                .eq(ActivityJoin::getUid, user.getId()));
-        if (exists && activity.getActivityEndDate().after(new Date())) {
-            return Triple.of(1, null, "已加入活动，活动没开奖");
-        } else if (exists && activity.getActivityEndDate().before(new Date())) {
-            // 判断是否开奖
-            val existsWin = activityWinService.getBaseMapper().exists(Wrappers.<ActivityWin>lambdaQuery()
-                    .eq(ActivityWin::getActivityId, activity.getId()));
-            if (existsWin) {
-                // 判断是否中奖
-                return isUserPrize(activity, user);
-            } else {
-                // 未开奖，开奖操作并返回中奖状态
-                val activityPrizes = activityPrizeService.list(Wrappers.<ActivityPrize>lambdaQuery().eq(ActivityPrize::getActivityId, activity.getId()));
-                val activityJoins = activityJoinService.list(Wrappers.<ActivityJoin>lambdaQuery().eq(ActivityJoin::getActivityId, activity.getId()));
-                val winUserIdList = new ArrayList<Integer>();
-                for (ActivityPrize activityPrize : activityPrizes) {
-                    for (int i = 0; i < activityPrize.getCount(); i++) {
-                        ActivityJoin join;
-                        do {
-                            join = getRandomValue(activityJoins);
-                        } while (winUserIdList.contains(join.getUid()));
-                        winUserIdList.add(join.getUid());
-                        val activityWin = new ActivityWin();
-                        activityWin.setActivityId(activity.getId())
-                                .setUid(join.getUid())
-                                .setActivityPrizeId(activityPrize.getId())
-                                .setDate(new Date());
-                        activityWinService.save(activityWin);
+        synchronized (this) {
+            val activity = getActivity(code);
+            val user = wxService.getUser(openid);
+            if (user == null) return Triple.of(-1, null, "用户不存在");
+            if (activity == null) return Triple.of(-1, null, "活动不存在");
+            val exists = activityJoinService.getBaseMapper().exists(Wrappers.<ActivityJoin>lambdaQuery()
+                    .eq(ActivityJoin::getActivityId, activity.getId())
+                    .eq(ActivityJoin::getUid, user.getId()));
+            if (exists && activity.getActivityEndDate().after(new Date())) {
+                return Triple.of(1, null, "已加入活动，活动没开奖");
+            } else if (exists && activity.getActivityEndDate().before(new Date())) {
+                // 判断是否开奖
+                val existsWin = activityWinService.getBaseMapper().exists(Wrappers.<ActivityWin>lambdaQuery()
+                        .eq(ActivityWin::getActivityId, activity.getId()));
+                if (existsWin) {
+                    // 判断是否中奖
+                    return isUserPrize(activity, user);
+                } else {
+                    // 未开奖，开奖操作并返回中奖状态
+                    val activityPrizes = activityPrizeService.list(Wrappers.<ActivityPrize>lambdaQuery().eq(ActivityPrize::getActivityId, activity.getId()));
+                    val activityJoins = activityJoinService.list(Wrappers.<ActivityJoin>lambdaQuery().eq(ActivityJoin::getActivityId, activity.getId()));
+                    val winUserIdList = new ArrayList<Integer>();
+                    for (ActivityPrize activityPrize : activityPrizes) {
+                        for (int i = 0; i < activityPrize.getCount(); i++) {
+                            ActivityJoin join;
+                            do {
+                                join = getRandomValue(activityJoins);
+                            } while (winUserIdList.contains(join.getUid()));
+                            winUserIdList.add(join.getUid());
+                            val activityWin = new ActivityWin();
+                            activityWin.setActivityId(activity.getId())
+                                    .setUid(join.getUid())
+                                    .setActivityPrizeId(activityPrize.getId())
+                                    .setDate(new Date());
+                            activityWinService.save(activityWin);
+                        }
                     }
+                    // 判断是否中奖
+                    return isUserPrize(activity, user);
                 }
-                // 判断是否中奖
-                return isUserPrize(activity, user);
             }
+            return Triple.of(0, null, "未加入当前活动");
         }
-        return Triple.of(0, null, "未加入当前活动");
     }
 
     public static <T> T getRandomValue(List<T> list) {
