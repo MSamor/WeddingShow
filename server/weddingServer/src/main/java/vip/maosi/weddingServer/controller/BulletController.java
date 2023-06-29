@@ -70,7 +70,7 @@ public class BulletController {
     }
 
     /**
-     * 获取所有用户发布的弹幕
+     * 获取所有用户发布的弹幕,flag为1 不返回禁用的用户
      *
      * @param pageNum
      * @param pageSize
@@ -78,7 +78,8 @@ public class BulletController {
      */
     @GetMapping("/getBulletList")
     public ResEntity<List<BulletManageDto>> getBulletList(@RequestParam @Min(message = "不能小于1", value = 1) Integer pageNum,
-                                                          @RequestParam @Min(message = "不能小于1", value = 1) Integer pageSize) {
+                                                          @RequestParam @Min(message = "不能小于1", value = 1) Integer pageSize,
+                                                          @RequestParam(required = false) Integer flag) {
         val page = bulletService.page(new Page<>(pageNum, pageSize),
                 Wrappers.<Bullet>lambdaQuery()
                         .orderByDesc(Bullet::getDate));
@@ -90,8 +91,13 @@ public class BulletController {
             val user = userService.getById(bulletItem.getUid());
             if (user == null) continue;
             if (user.getBan() == null) bulletManageDto.setIsUserBan(false);
-            else
+            else {
                 bulletManageDto.setIsUserBan(user.getBan());
+                if (flag == 1)
+                    continue;
+            }
+            bulletManageDto.setNickName(user.getNickName());
+            bulletManageDto.setAvatarUrl(user.getAvatarUrl());
             list.add(bulletManageDto);
         }
         return RGenerator.resSuccess(list);

@@ -8,4 +8,6 @@ import vip.maosi.weddingServer.domain.Bullet;
 @Accessors(chain = true)
 public class BulletManageDto extends Bullet {
     private Boolean isUserBan;
+    private String nickName;
+    private String avatarUrl;
 }
