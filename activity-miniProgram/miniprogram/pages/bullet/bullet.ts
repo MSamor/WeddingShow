@@ -80,24 +80,22 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        requestByOpenid(() => {
-            this.getPage(1, 20, true)
-        })
     },
 
     getPage(pageNum: number, pageSize: number, flag: boolean) {
-        api.getBulletsByOpenid({
+        api.getBulletList({
             pageSize: pageSize,
-            pageNum: pageNum
+            pageNum: pageNum,
+            flag: 1
         }).then((res) => {
             if (res.code == 200) {
                 if (flag) {
                     this.setData({
-                        list: res.data.records
+                        list: res.data
                     })
                 } else {
                     this.setData({
-                        list: this.data.list.concat(res.data.records)
+                        list: this.data.list.concat(res.data)
                     })
                 }
 
@@ -119,6 +117,9 @@ Page({
      */
     onShow() {
         this.apiSwiper()
+        requestByOpenid(() => {
+            this.getPage(1, 20, true)
+        })
     },
 
     /**

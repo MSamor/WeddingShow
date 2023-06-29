@@ -22,11 +22,11 @@ page {
 }
 
 .t-input {
-    background-color: #e4faff!important;
+    background-color: #e4faff !important;
 }
 
 .bulletBox {
-    height: 200rpx;
+    height: 128rpx;
     width: 700rpx;
     background-color: #ffffff;
     box-shadow: 0rpx 0rpx 10rpx #d8d8d8;
@@ -35,6 +35,9 @@ page {
     border-radius: 20rpx;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .t-notice-bar--info {
@@ -52,7 +55,7 @@ page {
 
 .bulletTime {
     position: absolute;
-    bottom: 10rpx;
+    bottom: 0rpx;
     right: 20rpx;
     font-size: 24rpx;
     color: #3a4047;
@@ -113,7 +116,16 @@ page {
     animation-direction: alternate;
 
     text-align: center;
-    margin-top: 66rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 500rpx;
+
+    margin-left: 30rpx;
+}
+
+.colorful-text::-webkit-scrollbar {
+    display: none;
 }
 
 @keyframes zoom {

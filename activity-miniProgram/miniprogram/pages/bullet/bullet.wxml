@@ -1,17 +1,5 @@
 <view class="card-theme" wx:if="{{swiperList.length != 0}}">
-    <t-swiper
-    current="{{current}}"
-    autoplay="{{autoplay}}"
-    duration="{{duration}}"
-    interval="{{interval}}"
-    navigation="{{ { type: 'dots' } }}"
-    image-props="{{ { shape: 'round' } }}"
-    list="{{swiperList}}"
-    previousMargin="34px"
-    nextMargin="34px"
-    loop="{{true}}"
-    t-class-nav="card-theme-nav"
-    >
+    <t-swiper current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{ { type: 'dots' } }}" image-props="{{ { shape: 'round' } }}" list="{{swiperList}}" previousMargin="34px" nextMargin="34px" loop="{{true}}" t-class-nav="card-theme-nav">
     </t-swiper>
 </view>
 <view class="wrapper">
@@ -19,8 +7,14 @@
         <block wx:for="{{list}}">
             <!-- <t-cell title="{{item.text}}" description="发送时间：{{item.date}}" hover /> -->
             <view class="bulletBox">
-                <view class="colorful-text">
-                    {{item.text}}
+                <view>
+                    <image style="width: 100rpx;height: 100rpx;margin-right: 20rpx;" src="{{item.avatarUrl}}" mode="widthFix" />
+                </view>
+                <view style="margin-top: -10rpx;">
+                    <view style="margin-top: -20rpx;">{{item.nickName}}</view>
+                    <view class="colorful-text">
+                        {{item.text}}
+                    </view>
                 </view>
                 <view class="bulletTime">
                     发送时间：{{item.date}}
