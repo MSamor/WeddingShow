@@ -27,7 +27,7 @@ public class WXH5ConfigController {
         if (StringUtils.isEmpty(url)) return RGenerator.resCustom(-1, "完整url不能为空");
         String jsapi_ticket = weJsApiTicket.getTicket();
         Map<String, String> ret = signUtils.sign(jsapi_ticket, url);
-        ret.put("link","http://wedding.codebest.cn"); // 跳转链接
+        ret.put("link","http://wedding.xxx.cn"); // 跳转链接
         ret.put("title","测试"); // 标题
         ret.put("desc","测试描述"); // 描述
         ret.put("imgUrl","图片地址"); // 图片地址
