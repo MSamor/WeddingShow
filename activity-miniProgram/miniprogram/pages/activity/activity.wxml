@@ -2,7 +2,7 @@
 <!-- 顶部 -->
 <view class="wrapper">
     <view wx:if="{{true}}">
-        <view class="countdown-title" animation="{{animationData}}" style="font-size: {{fontSize}}rpx;"> 开奖倒计时 </view>
+        <view class="countdown-title" animation="{{animationData}}" style="font-size: {{fontSize}}rpx;" bindtap="toManage"> 开奖倒计时 </view>
         <view class="countdown-box">
             <t-count-down wx:if="{{time > 0}}" t-class-count="external-count" t-class-split="external-split" content="default" time="{{ time }}" splitWithUnit millisecond size="large" bind:finish="finishActivity" />
             <t-count-down wx:if="{{time <= 0}}" t-class-count="external-count" t-class-split="external-split" content="default" time="{{ 0 }}" splitWithUnit millisecond size="large" />
@@ -12,21 +12,21 @@
 <!-- 底部 -->
 <view class="wrapperBottom">
     <view class="btn-join shining-box" wx:if="{{!join && !open}}" bindtap="joinActivity">
-        <span class="jump-text">立</span>
-        <span class="jump-text">即</span>
+        <span class="jump-text">送</span>
+        <span class="jump-text">祝福</span>
         <span class="jump-text">参</span>
         <span class="jump-text">与</span>
         <span class="jump-text">抽</span>
         <span class="jump-text">奖</span>
         <!-- 立即参与抽奖 -->
     </view>
-    <view class="btn-is-join" wx:if="{{join && !open}}">
+    <view class="btn-is-join" bindtap="showStatus" wx:if="{{join && !open}}">
         已参与，等待开奖
     </view>
     <view class="btn-win" wx:if="{{join && open && !win}}">
-        未中奖
+        未中奖，谢谢参与~
     </view>
-    <view class="btn-is-win" wx:if="{{join && open && win}}">
+    <view class="btn-is-win" bindtap="showStatus" wx:if="{{join && open && win}}">
         已中奖：{{prizeName}}
     </view>
     <view class="text">
@@ -43,3 +43,42 @@
         </view>
     </view>
 </view>
+
+<t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="center">
+    <view class="block">
+        <view class="wrapperSuccess">
+            <view class="success">
+                <view class="arc radus">
+                    <image src="../../img/successLeft.png" style="width: 44px; height: 40px;position: absolute;top: -40rpx;right: 30rpx;" mode="" />
+                    温馨提示
+                    <image src="../../img/successTop.png" style="width: 44px; height: 40px;left: -50rpx;position: absolute; top: 40rpx;" mode="" />
+                </view>
+
+                <block wx:if="{{join && !open}}">
+                    <view class="acquire">
+                        已参与，等待开奖
+                    </view>
+                </block>
+
+                <block wx:if="{{join && open && !win}}">
+                    <view class="acquire">
+                        未中奖，谢谢参与~
+                    </view>
+                </block>
+
+                <block wx:if="{{join && open && win}}">
+                    <view class="acquire">
+                        恭喜你，已中奖！
+                        {{prizeName}}* 1
+                    </view>
+                </block>
+
+
+                <view class="btnGood" bindtap="onClose">
+                    好的
+                </view>
+            </view>
+        </view>
+        <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose" />
+    </view>
+</t-popup>

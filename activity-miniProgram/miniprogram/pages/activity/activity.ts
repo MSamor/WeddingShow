@@ -16,7 +16,9 @@ Page({
         open: false,
         activityCode: "timePrize",
         fontSize: 66,
-        animationData: {}
+        animationData: {},
+        visible: false,
+        num: 0
     },
 
     /**
@@ -45,7 +47,7 @@ Page({
         })
         api.getActivityStatus({ code: this.data.activityCode }).then((resStatus) => {
             console.log(resStatus);
-            
+
             if (resStatus.code == 0) {
                 this.setData({
                     join: false
@@ -91,7 +93,7 @@ Page({
             api.joinActivity({ code: this.data.activityCode }).then((res) => {
                 if (res.code == 200) {
                     wx.showToast({
-                        title: "加入成功"
+                        title: "参与成功~"
                     })
                     requestByOpenid(() => {
                         this.getStatus()
@@ -107,7 +109,44 @@ Page({
     },
 
     finishActivity() {
+        this.setData({
+            visible: true
+        })
         this.getStatus()
+    },
+
+    onVisibleChange(e: any) {
+        this.setData({
+            visible: e.detail.visible,
+        });
+    },
+
+    onClose() {
+        this.setData({
+            visible: false,
+        })
+    },
+
+    showStatus() {
+        this.setData({
+            visible: true
+        })
+    },
+
+    toManage() {
+        this.setData({
+            num: this.data.num + 1
+        })
+        setTimeout(() => {
+            this.setData({
+                num: 0
+            })
+        }, 1000);
+        if (this.data.num >= 5) {
+            wx.navigateTo({
+                url: "../mine/mine"
+            })
+        }
     },
 
     /**

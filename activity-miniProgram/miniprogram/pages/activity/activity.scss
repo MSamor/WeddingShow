@@ -175,3 +175,83 @@ page {
     animation-iteration-count: infinite;
     margin-top: 10rpx;
 }
+
+.t-popup {
+    border-radius: 50rpx!important;
+}
+
+.success {
+    height: 500rpx;
+    width: 500rpx;
+    position: relative;
+    background-color: white;
+    border-radius: 50rpx;
+  }
+  
+  .wrapperSuccess {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .radus {
+    border-radius: 30rpx 30rpx 50% 50%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  
+  .close {
+    position: absolute;
+    bottom: -100rpx;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .block {
+    border-radius: 40rpx!important;
+  }
+  
+  .acquire {
+    text-align: center;
+    margin-top: 20rpx;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF6060;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: pre-line;
+  }
+  
+  .btnGood {
+    width: 174px;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 60rpx;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(71deg, #FF7272 1%, #FF7272 31%, #FFAB87 85%);
+    border-radius: 34px;
+  }
+
+  .arc {
+    background: linear-gradient(71deg, #FF7272 1%, #FF7272 31%, #FFAB87 85%);
+    height: 150rpx;
+    border-radius: 0 0 50% 50%;
+    text-align: center;
+  }
+
+  .radus {
+    border-radius: 30rpx 30rpx 50% 50%;
+    text-align: center;
+    line-height: 150rpx;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }

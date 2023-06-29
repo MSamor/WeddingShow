@@ -1,3 +1,7 @@
+page {
+    background-color: #dbf8fe;
+}
+
 .wrapper {
     position: relative;
     margin-top: 430rpx;
@@ -6,6 +10,7 @@
 
 .scrollView {
     overflow-y: scroll;
+    padding-bottom: 10rpx;
 }
 
 .pupBox {
@@ -14,6 +19,10 @@
     left: 0;
     right: 0;
     box-shadow: 0 0 10rpx rgb(194, 194, 194);
+}
+
+.t-input {
+    background-color: #e4faff!important;
 }
 
 .bulletBox {
@@ -27,8 +36,9 @@
     position: relative;
     overflow: hidden;
 }
+
 .t-notice-bar--info {
-    background-color: transparent!important;
+    background-color: transparent !important;
     width: 500rpx;
     margin: 0 auto;
 }
@@ -49,7 +59,7 @@
 }
 
 .t-class-content {
-    font-size: 40rpx!important;
+    font-size: 40rpx !important;
     color: #d54941;
 }
 
@@ -58,7 +68,7 @@
     --td-swiper-item-padding: 0 12rpx;
     --td-swiper-nav-dot-color: #e7e7e7;
     --td-swiper-nav-dot-active-color: #0052d9;
-  
+
     padding-bottom: 18px;
     position: fixed;
     z-index: 9999;
@@ -67,37 +77,51 @@
     right: 0;
     background-color: white;
     box-shadow: 0 0 10rpx rgb(209, 209, 209);
-  }
-  
-  .scale-candidate {
-    height: 126px !important;
-  }
+}
 
-  @keyframes color-change {
-    0% { color: red; }
-    25% { color: rgb(247, 0, 255); }
-    50% { color: rgb(23, 56, 248); }
-    75% { color: rgb(233, 229, 24); }
-    100% { color: rgb(243, 32, 85); }
-  }
-  
-  .colorful-text {
-    animation-name: color-change,zoom;
-    animation-duration: 5s,2s;
-    animation-timing-function: linear,ease-in-out;
-    animation-iteration-count: infinite,infinite;
+.scale-candidate {
+    height: 126px !important;
+}
+
+@keyframes color-change {
+    0% {
+        color: red;
+    }
+
+    25% {
+        color: rgb(247, 0, 255);
+    }
+
+    50% {
+        color: rgb(23, 56, 248);
+    }
+
+    75% {
+        color: rgb(233, 229, 24);
+    }
+
+    100% {
+        color: rgb(243, 32, 85);
+    }
+}
+
+.colorful-text {
+    animation-name: color-change, zoom;
+    animation-duration: 5s, 2s;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
     animation-direction: alternate;
-    
+
     text-align: center;
     margin-top: 66rpx;
-  }
-  
-  @keyframes zoom {
+}
+
+@keyframes zoom {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
+
     100% {
-      transform: scale(1.2);
+        transform: scale(1.2);
     }
-  }
-  
+}

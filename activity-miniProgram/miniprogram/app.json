@@ -32,12 +32,6 @@
                 "text": "发送弹幕",
                 "iconPath": "img/bell.png",
                 "selectedIconPath": "img/bell.png"
-            },
-            {
-                "pagePath": "pages/mine/mine",
-                "text": "我的",
-                "iconPath": "img/hunli.png",
-                "selectedIconPath": "img/hunli.png"
             }
         ]
     }
