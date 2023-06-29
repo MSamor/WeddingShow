@@ -33,6 +33,8 @@ public class ActivityController {
     ActivityJoinService activityJoinService;
     @Autowired
     ActivityWinService activityWinService;
+    @Autowired
+    BulletController bulletController;
 
     /**
      * 根据活动code获取活动详情和奖品列表
@@ -58,7 +60,10 @@ public class ActivityController {
                                           @RequestParam @NotBlank(message = "code不能为空") String code) {
         val openid = request.getHeader("openid");
         val pair = activityService.joinActivity(openid, code);
-        if (pair.getLeft() == 0) return RGenerator.resSuccess(pair.getRight());
+        if (pair.getLeft() == 0) {
+            bulletController.sendBullet(request,"新婚快乐~");
+            return RGenerator.resSuccess(pair.getRight());
+        }
         return RGenerator.resCustom(pair.getLeft(), pair.getRight());
     }
 
