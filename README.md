@@ -54,8 +54,12 @@ token:
 
 <table>
   <tr>
-      <img decoding="async" src="http://static.wpaini.com/Snipaste_2023-06-30_13-52-57.png" width="40%">
-      <img decoding="async" src="http://static.wpaini.com/bbe8e2f9fd81ee1f0a54ca79840aff0.jpg" width="40%">
+    <td>
+      <img decoding="async" src="http://static.wpaini.com/Snipaste_2023-06-30_13-52-57.png" width="100%">
+    </td>
+     <td>
+      <img decoding="async" src="http://static.wpaini.com/bbe8e2f9fd81ee1f0a54ca79840aff0.jpg" width="100%">
+     </td>
   </tr>
 </table>
 
@@ -150,12 +154,20 @@ token:
 🥰展示效果如下：
 <table>
   <tr>
-      <img decoding="async" src="http://static.wpaini.com/507e031f63a8621bb161e99df5b9e9b.jpg" width="50%">
-      <img decoding="async" src="http://static.wpaini.com/be74c3b6dc719d13bd1b4cb16531564.jpg" width="50%">
+      <td>
+        <img decoding="async" src="http://static.wpaini.com/507e031f63a8621bb161e99df5b9e9b.jpg" width="100%">
+      </td>
+      <td>
+        <img decoding="async" src="http://static.wpaini.com/be74c3b6dc719d13bd1b4cb16531564.jpg" width="100%">
+      </td>
   </tr>
   <tr>
-      <img decoding="async" src="http://static.wpaini.com/7d130fd7cacbeadf227e0af93248cb7.jpg" width="50%">
-      <img decoding="async" src="http://static.wpaini.com/e344c24843f35e1d2ac3bfebbeb4667.jpg" width="50%">
+      <td>
+        <img decoding="async" src="http://static.wpaini.com/7d130fd7cacbeadf227e0af93248cb7.jpg" width="100%">
+      </td>
+     <td>
+        <img decoding="async" src="http://static.wpaini.com/e344c24843f35e1d2ac3bfebbeb4667.jpg" width="100%">
+      </td>
   </tr>
 </table>
 
