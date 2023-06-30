@@ -51,7 +51,7 @@ public class SignUtils {
         }
 
         ret.put("url", url);
-        ret.put("appid", tokenProp.wechat.miniProgram.appId);
+        ret.put("appid", tokenProp.wechat.publicProgram.appId);
         ret.put("nonceStr", nonce_str);
         ret.put("timestamp", timestamp);
         ret.put("signature", signature);
