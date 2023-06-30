@@ -16,3 +16,11 @@ token:
     public-program:
       app-id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       app-secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+share:
+  link: xxxxxxxxxx
+  title: xxxxxxxxxx
+  desc: xxxxxxxxxxx
+  image-url: xxxxxxxx
+
+admin-password: xxxxx
