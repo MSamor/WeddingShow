@@ -1,4 +1,7 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import {baseUrl} from "./baseInfo"
+const URL: string = baseUrl
+
 // 数据返回的接口
 interface Result {
     code: number;
@@ -9,8 +12,6 @@ interface Result {
 interface ResultData<T = any> extends Result {
     data?: T;
 }
-
-const URL: string = 'http://192.168.1.24:8888'
 
 enum RequestEnums {
     TIMEOUT = 20000,

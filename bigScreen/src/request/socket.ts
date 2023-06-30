@@ -1,7 +1,8 @@
-let baseWsUrl = "ws:192.168.1.24:8888/ws/weddingShow";
+import { baseWsUrl } from "./baseInfo"
+
 var socket: WebSocket;
 socket = new WebSocket(baseWsUrl);
-let messageCallbacks:any = [];
+let messageCallbacks: any = [];
 
 socket.onopen = (event: any) => {
   console.log("建立链接");
@@ -19,13 +20,13 @@ socket.onmessage = (event: any) => {
   execute(data)
 };
 
-function execute(data:any) {
-  messageCallbacks.forEach((callback:any) => {
+function execute(data: any) {
+  messageCallbacks.forEach((callback: any) => {
     callback(data)
   });
 }
 
-function listener2Callback(callback:any) {
+function listener2Callback(callback: any) {
   messageCallbacks.push(callback)
 }
 
