@@ -5,7 +5,6 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: STXingkai;
 }
 
 .wp {
@@ -350,6 +349,16 @@ body {
 .circle-box img {
   max-width: 70%;
   vertical-align: middle;
+}
+
+.page0 {
+  background-color: black;
+  color: white;
+}
+
+#type {
+  margin: 20px;
+  color: #00b5f7;
 }
 
 .page1,
