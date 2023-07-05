@@ -352,13 +352,12 @@ body {
 }
 
 .page0 {
-  background-color: black;
+  background-color: #1e1f22;
   color: white;
 }
 
 #type {
   margin: 20px;
-  color: #00b5f7;
 }
 
 .page1,

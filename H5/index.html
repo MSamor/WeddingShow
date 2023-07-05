@@ -829,67 +829,69 @@
     <script>
       function type() {
         const obj = {
-        output: '',
-        isEnd: false,
-        speed: 40,
-        singleBack: false,
-        sleep: 0,
-        type: 'normal',
-        backSpeed: 40,
-        sentencePause: false
-      }
+          output: '',
+          isEnd: false,
+          speed: 40,
+          singleBack: false,
+          sleep: 0,
+          type: 'normal',
+          backSpeed: 40,
+          sentencePause: false
+        }
 
-      options = {
-        "speed": 30,						//文字速度
-        "selector": 'type1',				//选择器
-        "startIndex": 0,					//从第几个字符开始打印
-        "endIndex": 10,						//打印到第几个字符结束
-        "hasCur": true,					//是否显示光标
-        "curId": 'cur',					//光标的ID
-        "curStr": '_',						//光标字符
-        "curStyle": 'font-weight: bold;',	//光标的样式（CSS样式）
-        "curSpeed": 100,					//光标速度（ms）
-        "lnStr": ""							//行首字符
-      };
-      Printer.init(`
-      正在链接 "幸福服务器"...
-      链接建立成功.
+        options = {
+          "speed": 30,						//文字速度
+          "selector": 'type1',				//选择器
+          "startIndex": 0,					//从第几个字符开始打印
+          "endIndex": 10,						//打印到第几个字符结束
+          "hasCur": true,					//是否显示光标
+          "curId": 'cur',					//光标的ID
+          "curStr": '_',						//光标字符
+          "curStyle": 'font-weight: bold;',	//光标的样式（CSS样式）
+          "curSpeed": 100,					//光标速度（ms）
+          "lnStr": ""							//行首字符
+        };
+        Printer.init(`
+        ❤️❤️正在链接 "幸福服务器"...❤️❤️
+        ❤️❤️链接建立成功.❤️❤️
       
       [root ~]# 请输入密码
       [root ~]# *****
       [root ~]# 登录成功
 
-      // 婚礼邀请函还没做？怎么办呢~
-      // 不管了，马上写一个...
+      !// 婚礼邀请函还没做？怎么办呢~^
+      !// 不管了，马上写一个...^
 
-      LoveUtils.WeddingShow(invite, love)
+      $public class UserApplication {
+      　public static void main(String[] args) {
+      　　LoveUtils.WeddingShow(invite, love);
+      　　System.out.println("2023年7月4日");
+      　}
+      }^
 
-      // 写完了，立即编译执行~
+      !// 写完了，立即编译执行~^
 
-
-      [root ~]# 初始化完成...
-      [root ~]# 申请运行环境完成...
-      [root ~]# 编译完成...
-      [root ~]# 打包完成...
-      [root ~]# 部署完成...
-      [root ~]# 立即执行
+      [root ~]# $初始化完成...^
+      [root ~]# $申请运行环境完成...^
+      [root ~]# $编译完成...^
+      [root ~]# $打包完成...^
+      [root ~]# $部署完成...^
+      [root ~]# $立即执行...^
 
       ####################### 100%
 
-      System.out.println("2023年7月4日");
-
-      🤵‍♂️: 我们结婚啦~
-      👰‍♀️: 我们结婚啦~
+      -🤵‍♂️: 我们结婚啦~❤️‍🔥
+      👰‍♀️: 我们结婚啦~❤️‍🔥^
        
       正在启动...............................
 
       上滑可以切换页面
       `, options).print()
 
-      setTimeout(() => {
-        var robot = new touchRobot(document.getElementById("type"));
-        robot.touchTop();
-      }, 15000);
+        setTimeout(() => {
+          var robot = new touchRobot(document.getElementById("type"));
+          robot.touchTop();
+        }, 15000);
       }
     </script>
 </body>
