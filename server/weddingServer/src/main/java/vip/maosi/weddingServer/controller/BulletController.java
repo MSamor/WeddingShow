@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import vip.maosi.weddingServer.domain.Bullet;
 import vip.maosi.weddingServer.dto.BulletDto;
 import vip.maosi.weddingServer.dto.BulletManageDto;
+import vip.maosi.weddingServer.dto.WeContentScene;
 import vip.maosi.weddingServer.meta.SessionKeys;
 import vip.maosi.weddingServer.response.DefinedCode;
 import vip.maosi.weddingServer.response.RGenerator;
@@ -24,6 +25,7 @@ import vip.maosi.weddingServer.response.ResEntity;
 import vip.maosi.weddingServer.service.BulletService;
 import vip.maosi.weddingServer.service.UserService;
 import vip.maosi.weddingServer.service.wx.WXService;
+import vip.maosi.weddingServer.service.wx.WeMsgCheck;
 import vip.maosi.weddingServer.util.JsonUtils;
 import vip.maosi.weddingServer.util.SessionManagerUtils;
 
@@ -47,6 +49,8 @@ public class BulletController {
     WXService wxService;
     @Autowired
     SessionManagerUtils sessionManagerUtils;
+    @Autowired
+    WeMsgCheck weMsgCheck;
 
     /**
      * 分页获取自己发送的弹幕列表
@@ -135,6 +139,9 @@ public class BulletController {
         val user = wxService.getUser(openid);
         if (user == null) return RGenerator.resCustom(-1, "用户不存在");
         if (user.getBan() != null && user.getBan()) return RGenerator.resCustom(-3, "用户已禁用");
+        // 检测是否违规
+        //  Pair<Integer, String> pair = weMsgCheck.checkMessage(openid, WeContentScene.COMMENT, text);
+        //  if (pair.getLeft() != 0) return RGenerator.resCustom(-4, pair.getRight());
         val bullet = new Bullet()
                 .setDate(new Date())
                 .setUid(user.getId())
