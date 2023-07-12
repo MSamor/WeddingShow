@@ -11,24 +11,34 @@
 </view>
 <!-- 底部 -->
 <view class="wrapperBottom">
-    <view class="btn-join shining-box" wx:if="{{!join && !open}}" bindtap="joinActivity">
-        <span class="jump-text">送</span>
-        <span class="jump-text">祝福</span>
-        <span class="jump-text">参</span>
-        <span class="jump-text">与</span>
-        <span class="jump-text">抽</span>
-        <span class="jump-text">奖</span>
-        <!-- 立即参与抽奖 -->
+    <view class="wrap" bindtap="joinActivity">
+        <view class="btn-join" wx:if="{{!join && !open}}">
+            <span class="jump-text">点击</span>
+            <span class="jump-text">送</span>
+            <span class="jump-text">祝福</span>
+            <span class="jump-text">参与</span>
+            <span class="jump-text">抽</span>
+            <span class="jump-text">奖</span>
+            <!-- 立即参与抽奖 -->
+        </view>
+        <view class="btn-is-join" bindtap="showStatus" wx:if="{{join && !open}}">
+            已参与，等待开奖
+        </view>
+        <view class="btn-win" wx:if="{{join && open && !win}}">
+            未中奖，谢谢参与~
+        </view>
+        <view class="btn-is-win" bindtap="showStatus" wx:if="{{join && open && win}}">
+            已中奖：{{prizeName}}
+        </view>
+        <view class="box-left">
+            <!-- 1 -->
+        </view>
+        <view class="box-right">
+            <!-- 2 -->
+        </view>
     </view>
-    <view class="btn-is-join" bindtap="showStatus" wx:if="{{join && !open}}">
-        已参与，等待开奖
-    </view>
-    <view class="btn-win" wx:if="{{join && open && !win}}">
-        未中奖，谢谢参与~
-    </view>
-    <view class="btn-is-win" bindtap="showStatus" wx:if="{{join && open && win}}">
-        已中奖：{{prizeName}}
-    </view>
+
+
     <view class="text">
         {{activityInfo.activityDesc}}
     </view>

@@ -95,6 +95,9 @@ Page({
                     wx.showToast({
                         title: "参与成功~"
                     })
+                    this.setData({
+                        visible: true
+                    })
                     requestByOpenid(() => {
                         this.getStatus()
                     })

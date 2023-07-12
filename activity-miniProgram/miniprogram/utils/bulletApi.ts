@@ -18,6 +18,11 @@ export default class bulletApi {
             data
         )
 
+    static getSetting = () =>
+        httpRequest.get<any>(
+            baseUrl + '/manage/setting'
+        )
+
     /**
      * 发送弹幕
      */

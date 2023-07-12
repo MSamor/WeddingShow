@@ -28,7 +28,7 @@
     <view wx:else class="sendMsgShow">
         赶快发送祝福吧~
     </view>
-    <view class="pupBox">
+    <view class="pupBox" wx:if="{{setting}}">
         <t-input label="" value="{{text}}" placeholder="新婚快乐~" bind:change="onChange" cursor-spacing="{{10}}">
             <t-button slot="suffix" theme="danger" icon="heart-filled" bindtap="send" variant="outline" shape="round"> 立即发送 </t-button>
         </t-input>

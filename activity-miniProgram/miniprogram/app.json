@@ -29,7 +29,7 @@
             },
             {
                 "pagePath": "pages/bullet/bullet",
-                "text": "发送弹幕",
+                "text": "弹幕",
                 "iconPath": "img/bell.png",
                 "selectedIconPath": "img/bell.png"
             }

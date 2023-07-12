@@ -8,14 +8,14 @@
 .wrapper {
     position: fixed;
     top: 200rpx;
-    height: 650rpx;
+    height: 550rpx;
     width: 100%;
 }
 
 .wrapperBottom {
     position: fixed;
     bottom: 0;
-    height: 450rpx;
+    height: 650rpx;
     width: 100%;
 }
 
@@ -48,26 +48,87 @@ page {
 .btn-is-join,
 .btn-win,
 .btn-is-win {
-    width: 400rpx;
-    background-color: #f5ccc7;
-    border-radius: 50rpx;
+    // width: 400rpx;
+    // background-color: #f5ccc7;
+    // text-align: center;
+    // margin: 0 auto;
+    // line-height: 100rpx;
+    // margin-top: 20rpx;
+    // box-shadow: 1rpx 1rpx 30rpx red;
+    // color: rgb(255, 57, 57);
+    // font-weight: bolder;
+    // border-radius: 50px;
+    position: absolute;
+    z-index: 9;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
     text-align: center;
-    margin: 0 auto;
-    line-height: 100rpx;
-    margin-top: 20rpx;
-    box-shadow: 1rpx 1rpx 30rpx red;
-    color: red;
-    font-weight: bolder;
+    color: pink;
+    top: 40%;
 }
+
+.wrap {
+    position: relative;
+    width: 370rpx;
+    height: 300rpx;
+    margin: 0 auto;
+    animation: love 1s infinite;
+}
+
+.box-left {
+    width: 150rpx;
+    height: 250rpx;
+    background-color: red;
+    /* 平移、旋转 */
+    transform: translate(55rpx) rotate(-45deg);
+    /* 圆角属性 */
+    border-radius: 120rpx 120rpx 0 0;
+    /* 添加阴影光环 */
+    box-shadow: 0 0 80rpx 0 red;
+}
+
+.box-right {
+    /* 此处通过给盒子2使用定位属性使两个盒子重叠;或者给盒子1使用浮动属性，第二个盒子不变 用一种即可*/
+    position: relative;
+    top: -250rpx;
+    width: 150rpx;
+    height: 280rpx;
+    background-color: red;
+    /* 平移、旋转 */
+    transform: translate(161rpx) rotate(45deg);
+    /* 圆角属性 */
+    border-radius: 120rpx 120rpx 0 0;
+    /* 添加阴影光环 */
+    box-shadow: 0 0 80rpx 0 red;
+}
+
+/* 爱心的动画名字为love，一定要前后对应 */
+@keyframes love {
+
+    /* 此处主要是通过变形属性的缩放来实现跳动 */
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 
 .text {
     padding: 0 30rpx;
     color: #fb8d9a;
-    margin-top: 20rpx;
 }
 
 .prizeList {
     padding: 0 30rpx;
+    height: 180rpx;
     color: #ff5534;
     font-family: monospace;
     font-weight: bolder;
@@ -80,6 +141,7 @@ page {
     .prizeListItem {
         font-size: 32rpx;
         width: 300rpx;
+        height: 100%;
         margin: 0 auto;
         border-radius: 30rpx;
         margin-top: 10rpx;
@@ -177,7 +239,7 @@ page {
 }
 
 .t-popup {
-    border-radius: 50rpx!important;
+    border-radius: 50rpx !important;
 }
 
 .success {
@@ -186,35 +248,35 @@ page {
     position: relative;
     background-color: white;
     border-radius: 50rpx;
-  }
-  
-  .wrapperSuccess {
+}
+
+.wrapperSuccess {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-  }
-  
-  .radus {
+}
+
+.radus {
     border-radius: 30rpx 30rpx 50% 50%;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
     color: #FFFFFF;
-  }
-  
-  .close {
+}
+
+.close {
     position: absolute;
     bottom: -100rpx;
     left: 50%;
     transform: translateX(-50%);
-  }
+}
 
-  .block {
-    border-radius: 40rpx!important;
-  }
-  
-  .acquire {
+.block {
+    border-radius: 40rpx !important;
+}
+
+.acquire {
     text-align: center;
     margin-top: 20rpx;
     font-size: 24px;
@@ -224,9 +286,9 @@ page {
     align-items: center;
     justify-content: center;
     white-space: pre-line;
-  }
-  
-  .btnGood {
+}
+
+.btnGood {
     width: 174px;
     height: 54px;
     line-height: 54px;
@@ -238,20 +300,20 @@ page {
     font-weight: bold;
     background: linear-gradient(71deg, #FF7272 1%, #FF7272 31%, #FFAB87 85%);
     border-radius: 34px;
-  }
+}
 
-  .arc {
+.arc {
     background: linear-gradient(71deg, #FF7272 1%, #FF7272 31%, #FFAB87 85%);
     height: 150rpx;
     border-radius: 0 0 50% 50%;
     text-align: center;
-  }
+}
 
-  .radus {
+.radus {
     border-radius: 30rpx 30rpx 50% 50%;
     text-align: center;
     line-height: 150rpx;
     font-size: 24px;
     font-weight: bold;
     color: #FFFFFF;
-  }
+}

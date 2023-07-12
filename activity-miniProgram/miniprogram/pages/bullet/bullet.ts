@@ -21,6 +21,7 @@ Page({
         duration: 500,
         interval: 3000,
         swiperList: [],
+        setting: false
     },
 
     onChange(val: any) {
@@ -77,7 +78,7 @@ Page({
     },
 
     bigImage() {
-        wx.previewImage({urls:this.data.swiperList})
+        wx.previewImage({ urls: this.data.swiperList })
     },
 
     /**
@@ -123,6 +124,14 @@ Page({
         this.apiSwiper()
         requestByOpenid(() => {
             this.getPage(1, 20, true)
+        })
+        api.getSetting().then((res) => {
+            if (res.code == 200) {
+                this.setData({
+                    setting: res.data
+                })
+
+            }
         })
     },
 
