@@ -98,9 +98,7 @@ Page({
                     this.setData({
                         visible: true
                     })
-                    requestByOpenid(() => {
-                        this.getStatus()
-                    })
+                    this.getStatus()
                 } else {
                     wx.showToast({
                         title: res.msg,
