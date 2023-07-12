@@ -1,6 +1,9 @@
 <view class="card-theme" wx:if="{{swiperList.length != 0}}">
-    <t-swiper current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{ { type: 'dots' } }}" image-props="{{ { shape: 'round' } }}" list="{{swiperList}}" previousMargin="34px" nextMargin="34px" loop="{{true}}" t-class-nav="card-theme-nav">
-    </t-swiper>
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}"  style="height: 100%;">
+        <swiper-item wx:for="{{swiperList}}" style="text-align: center;">
+            <image bindtap="bigImage" class="imageSwiper" src="{{item}}" mode="heightFix" />
+        </swiper-item>
+    </swiper>
 </view>
 <view class="wrapper">
     <view class="scrollView" wx:if="{{list.length != 0}}">
@@ -11,7 +14,7 @@
                     <image style="width: 100rpx;height: 100rpx;margin-right: 20rpx;" src="{{item.avatarUrl}}" mode="widthFix" />
                 </view>
                 <view style="margin-top: -10rpx;">
-                    <view style="margin-top: -20rpx;">{{item.nickName}}</view>
+                    <view style="margin-top: -20rpx;font-size: 28rpx;">{{item.nickName}}</view>
                     <view class="colorful-text">
                         {{item.text}}
                     </view>

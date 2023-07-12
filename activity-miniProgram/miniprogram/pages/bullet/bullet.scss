@@ -13,6 +13,12 @@ page {
     padding-bottom: 10rpx;
 }
 
+.imageSwiper {
+    width: 750rpx;
+    height: 100%;
+    border-radius: 8rpx;
+}
+
 .pupBox {
     position: fixed;
     bottom: 0;
@@ -32,7 +38,7 @@ page {
     box-shadow: 0rpx 0rpx 10rpx #d8d8d8;
     margin: 0 auto;
     margin-top: 10rpx;
-    border-radius: 20rpx;
+    border-radius: 6rpx;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -67,12 +73,8 @@ page {
 }
 
 .card-theme {
-    --td-swiper-radius: 0;
-    --td-swiper-item-padding: 0 12rpx;
-    --td-swiper-nav-dot-color: #e7e7e7;
-    --td-swiper-nav-dot-active-color: #0052d9;
-
-    padding-bottom: 18px;
+    padding-bottom: 9rpx;
+    height: 420rpx;
     position: fixed;
     z-index: 9999;
     top: 0;
