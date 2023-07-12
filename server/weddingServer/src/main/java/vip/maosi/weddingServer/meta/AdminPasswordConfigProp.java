@@ -10,4 +10,7 @@ public class AdminPasswordConfigProp {
 
     @Value("${admin-password}")
     private String adminPassword;
+
+    @Value("${send-bullet-able}")
+    private boolean sendBulletAble;
 }

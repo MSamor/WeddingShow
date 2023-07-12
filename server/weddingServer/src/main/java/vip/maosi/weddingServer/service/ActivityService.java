@@ -77,7 +77,9 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
         val user = wxService.getUser(openid);
         if (user == null) return Pair.of(-1, "用户不存在");
         if (activity == null) return Pair.of(-1, "活动不存在");
-        val join = activityJoinService.getOne(Wrappers.<ActivityJoin>lambdaQuery().eq(ActivityJoin::getUid, user.getId()));
+        val join = activityJoinService.getOne(Wrappers.<ActivityJoin>lambdaQuery()
+                .eq(ActivityJoin::getUid, user.getId())
+                .eq(ActivityJoin::getActivityId, activity.getId()));
         if (activity.getActivityEndDate().before(new Date())) return Pair.of(-1, "活动已截止");
         if (join != null) {
             return Pair.of(-1, "已加入活动");

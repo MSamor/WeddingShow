@@ -22,9 +22,14 @@ public class ManageController {
     @GetMapping("/login")
     public ResEntity<Boolean> login(@RequestParam @NotBlank(message = "密码不能为空") String pwd) {
         if (adminPasswordConfigProp.getAdminPassword().equals(pwd)) {
-            return RGenerator.resSuccess("登录成功",true);
-        }else {
-            return RGenerator.resCustom(-3,"密码错误");
+            return RGenerator.resSuccess("登录成功", true);
+        } else {
+            return RGenerator.resCustom(-3, "密码错误");
         }
+    }
+
+    @GetMapping("/setting")
+    public ResEntity<Boolean> login() {
+        return RGenerator.resSuccess(adminPasswordConfigProp.isSendBulletAble());
     }
 }
