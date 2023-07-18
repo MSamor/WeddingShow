@@ -22,7 +22,7 @@ public class BulletService extends ServiceImpl<BulletMapper, Bullet> {
         val bullet = getById(bulletId);
         val user = userService.getById(bullet.getUid());
         if (user == null) return Pair.of(-1, "用户不存在");
-        if (user.getBan()) Pair.of(-1, "已禁用");
+        if (user.getBan() != null && user.getBan()) return Pair.of(-1, "已禁用");
         val update = userService.update(Wrappers.<User>lambdaUpdate()
                 .eq(User::getId, bullet.getUid())
                 .set(User::getBan, true)
