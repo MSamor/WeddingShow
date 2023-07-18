@@ -11,4 +11,5 @@ public class ActivityWinUser {
     private String openid;
     private String prizeName;
     private Integer prizeNum;
+    private Boolean isGet;
 }

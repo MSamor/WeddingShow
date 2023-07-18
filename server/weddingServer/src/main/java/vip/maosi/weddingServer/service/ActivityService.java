@@ -66,7 +66,8 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
                     .setOpenid(user.getOpenid())
                     .setAvatarUrl(user.getAvatarUrl())
                     .setPrizeName(activityPrize.getPrizeName())
-                    .setPrizeNum(1);
+                    .setPrizeNum(1)
+                    .setIsGet(win.getIsGet() != null && win.getIsGet());
             winLists.add(activityWinUser);
         }
         return winLists;

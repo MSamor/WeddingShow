@@ -54,6 +54,12 @@ public class ActivityWin implements Serializable {
     @Size(max = 255, message = "额外说明最大长度要小于 255")
     private String memo;
 
+    /**
+     * 是否领奖
+     */
+    @TableField(value = "is_get")
+    private Boolean isGet;
+
     private static final long serialVersionUID = 1L;
 
     public static final String COL_ID = "id";

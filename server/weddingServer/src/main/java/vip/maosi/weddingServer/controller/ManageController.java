@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import vip.maosi.weddingServer.meta.AdminPasswordConfigProp;
 import vip.maosi.weddingServer.response.RGenerator;
 import vip.maosi.weddingServer.response.ResEntity;
+import vip.maosi.weddingServer.service.ActivityWinService;
 
 @Validated
 @RestController
@@ -18,6 +19,9 @@ public class ManageController {
 
     @Autowired
     AdminPasswordConfigProp adminPasswordConfigProp;
+
+    @Autowired
+    ActivityWinService activityWinService;
 
     @GetMapping("/login")
     public ResEntity<Boolean> login(@RequestParam @NotBlank(message = "密码不能为空") String pwd) {
@@ -31,5 +35,13 @@ public class ManageController {
     @GetMapping("/setting")
     public ResEntity<Boolean> login() {
         return RGenerator.resSuccess(adminPasswordConfigProp.isSendBulletAble());
+    }
+
+    @GetMapping("/isget")
+    public ResEntity<Boolean> isGetByOpenid(@RequestParam String openid, @RequestParam Boolean state) {
+        boolean getByOpenid = activityWinService.isGetByOpenid(openid, state);
+        if (getByOpenid) return RGenerator.resSuccess(getByOpenid);
+        else
+            return RGenerator.resCustom(-1, "设置失败");
     }
 }
