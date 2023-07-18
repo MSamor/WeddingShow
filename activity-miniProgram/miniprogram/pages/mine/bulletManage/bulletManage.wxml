@@ -1,4 +1,4 @@
-<block wx:for="{{list}}">
+<block wx:for="{{list}}" wx:key="id">
     <t-cell title="{{item.text}}" hover description="{{item.date}}">
         <t-switch bind:change="changeSwitch" value="{{item.isUserBan}}" slot="note" data-id="{{item.id}}" data-uid="{{item.uid}}"/>
     </t-cell>

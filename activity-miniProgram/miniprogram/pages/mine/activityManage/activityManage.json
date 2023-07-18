@@ -4,5 +4,6 @@
         "t-cell": "tdesign-miniprogram/cell/cell",
         "t-switch": "tdesign-miniprogram/switch/switch",
         "t-input": "tdesign-miniprogram/input/input"
-    }
+    },
+    "enablePullDownRefresh": true
 }

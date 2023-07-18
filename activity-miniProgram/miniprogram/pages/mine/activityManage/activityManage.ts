@@ -15,15 +15,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    this.getList()
+  },
+
+  getList() {
     api.getActivityPrizes({ code: "timePrize" }).then((res) => {
-      console.log(res);
-      if (res.code == 200) {
-        this.setData({
-          list: res.data,
-          newList: res.data
-        })
-      }
-    })
+        console.log(res);
+        if (res.code == 200) {
+          this.setData({
+            list: res.data,
+            newList: res.data
+          })
+        }
+      }).finally(() => {
+        wx.stopPullDownRefresh()
+      })
   },
 
   textChange(e: any) {
@@ -74,7 +80,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.getList()
   },
 
   /**

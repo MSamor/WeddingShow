@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        pageSize: 10,
+        pageSize: 20,
         pageNum: 1,
         list: [] as any
     },
@@ -17,12 +17,14 @@ Page({
                 wx.showToast({
                     title: res.msg
                 })
-                let index = this.data.list.findIndex((val: any, index: any) => {
+                let idx = -1
+                this.data.list.findIndex((val: any, index: any) => {
                     if (val.id == e.currentTarget.dataset.id) {
-                        return index;
+                        idx = index;
                     }
-                })
-                this.data.list[index].isUserBan = e.detail.value
+                })           
+                console.log(idx);
+                this.data.list[idx].isUserBan = e.detail.value
                 this.setData({
                     list: this.data.list
                 })
@@ -45,7 +47,8 @@ Page({
     getPage(pageNum: number, pageSize: number, flag: boolean) {
         api.getBulletList({
             pageSize: pageSize,
-            pageNum: pageNum
+            pageNum: pageNum,
+            flag: 0
         }).then((res) => {
             if (res.code == 200) {
                 if (flag) {
