@@ -97,8 +97,10 @@ public class BulletController {
             if (user.getBan() == null) bulletManageDto.setIsUserBan(false);
             else {
                 bulletManageDto.setIsUserBan(user.getBan());
-                if (flag == 1)
-                    continue;
+                if (user.getBan()) {
+                    if (flag == 1)
+                        continue;
+                }
             }
             bulletManageDto.setNickName(user.getNickName());
             bulletManageDto.setAvatarUrl(user.getAvatarUrl());
