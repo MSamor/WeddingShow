@@ -11,8 +11,8 @@
 </view>
 <!-- 底部 -->
 <view class="wrapperBottom">
-    <view class="wrap" bindtap="joinActivity">
-        <view class="btn-join" wx:if="{{!join && !open}}">
+    <view class="wrap">
+        <view class="btn-join" bindtap="joinActivity" wx:if="{{!join && !open}}">
             <span class="jump-text">点击</span>
             <span class="jump-text">送</span>
             <span class="jump-text">祝福</span>
@@ -21,6 +21,7 @@
             <span class="jump-text">奖</span>
             <!-- 立即参与抽奖 -->
         </view>
+
         <view class="btn-is-join" bindtap="showStatus" wx:if="{{join && !open}}">
             已参与，等待开奖
         </view>
@@ -47,7 +48,7 @@
             奖品列表
         </view>
         <view class="prizeListItem">
-            <block wx:for="{{activityInfo.prizeList}}">
+            <block wx:for="{{activityInfo.prizeList}}" wx:key="index">
                 <view class="wave-text">{{item.prizeName +" * " + item.count}}</view>
             </block>
         </view>
@@ -79,10 +80,10 @@
                 <block wx:if="{{join && open && win}}">
                     <view class="acquire">
                         恭喜你，已中奖！
-                        {{prizeName}}* 1
+                        {{prizeName}} * 1
                     </view>
+                    <view class="openid">中奖编号：{{openid}}</view>
                 </block>
-
 
                 <view class="btnGood" bindtap="onClose">
                     好的

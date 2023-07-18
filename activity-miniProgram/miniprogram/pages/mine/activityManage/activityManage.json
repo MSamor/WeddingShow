@@ -1,6 +1,7 @@
 {
     "usingComponents": {
         "t-avatar": "tdesign-miniprogram/avatar/avatar",
-        "t-cell": "tdesign-miniprogram/cell/cell"
+        "t-cell": "tdesign-miniprogram/cell/cell",
+        "t-switch": "tdesign-miniprogram/switch/switch"
     }
 }

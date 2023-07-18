@@ -18,7 +18,8 @@ Page({
         fontSize: 66,
         animationData: {},
         visible: false,
-        num: 0
+        num: 0,
+        openid: ""
     },
 
     /**
@@ -35,6 +36,9 @@ Page({
                 time: dateEnd.getTime() - nowDate.getTime() + 3000
             })
             requestByOpenid(() => {
+                this.setData({
+                    openid: app.globalData.openid
+                })
                 this.getStatus()
             })
         })

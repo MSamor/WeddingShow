@@ -66,6 +66,7 @@ page {
     text-align: center;
     color: pink;
     top: 40%;
+    padding: 60rpx 0;
 }
 
 .wrap {
@@ -288,13 +289,20 @@ page {
     white-space: pre-line;
 }
 
+.openid {
+    font-size: 20rpx;
+    text-align: center;
+    margin: 20rpx 0 0 0;
+    color: #fb8d9a;
+}
+
 .btnGood {
     width: 174px;
     height: 54px;
     line-height: 54px;
     text-align: center;
     margin: 0 auto;
-    margin-top: 60rpx;
+    margin-top: 30rpx;
     color: white;
     font-size: 28px;
     font-weight: bold;

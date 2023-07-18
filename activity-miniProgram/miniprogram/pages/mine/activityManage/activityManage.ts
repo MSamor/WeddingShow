@@ -1,6 +1,5 @@
 import api from "../../../utils/manage/activityApiMange"
-import requestByOpenid from "../../../utils/requestByOpenid"
-
+let app = getApp()
 Page({
 
     /**
@@ -21,6 +20,15 @@ Page({
                     list: res.data
                 })
             }
+        })
+    },
+
+    onChange(e: any) {
+        console.log(e);
+        
+        api.setGetInfo({
+            openid: app.globalData.openid,
+            state: e.detail.value
         })
     },
 

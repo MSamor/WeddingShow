@@ -11,4 +11,10 @@ export default class activityApi {
       baseUrl + '/activity/getActivityWinList',
       data
     )
+
+  static setGetInfo = (data: any) => 
+  httpRequest.get<any>(
+      baseUrl + "/manage/isget",
+      data
+  )
 }

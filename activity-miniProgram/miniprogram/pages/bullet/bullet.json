@@ -8,5 +8,6 @@
         "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav"
     },
     "enablePullDownRefresh": true,
-    "navigationBarTitleText": "弹幕列表"
+    "navigationBarTitleText": "弹幕列表",
+    "navigationBarBackgroundColor": "#dbf8fe"
 }

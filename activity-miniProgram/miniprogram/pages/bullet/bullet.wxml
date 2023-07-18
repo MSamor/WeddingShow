@@ -1,6 +1,6 @@
 <view class="card-theme" wx:if="{{swiperList.length != 0}}">
-    <swiper indicator-dots="{{true}}" autoplay="{{true}}"  style="height: 100%;">
-        <swiper-item wx:for="{{swiperList}}" style="text-align: center;">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" style="height: 100%;">
+        <swiper-item wx:for="{{swiperList}}" style="text-align: center;background-color: #dbf8fe;">
             <image bindtap="bigImage" class="imageSwiper" src="{{item}}" mode="heightFix" />
         </swiper-item>
     </swiper>
@@ -10,11 +10,11 @@
         <block wx:for="{{list}}">
             <!-- <t-cell title="{{item.text}}" description="发送时间：{{item.date}}" hover /> -->
             <view class="bulletBox">
-                <view>
-                    <image style="width: 100rpx;height: 100rpx;margin-right: 20rpx;" src="{{item.avatarUrl}}" mode="widthFix" />
-                </view>
+
+                <image style="width: 100rpx;height: 100rpx;margin: 0 20rpx;" src="../../img/valentine_011-hearts-love-affection-like.png" mode="widthFix" />
+
                 <view style="margin-top: -10rpx;">
-                    <view style="margin-top: -20rpx;font-size: 28rpx;">{{item.nickName}}</view>
+                    <!-- <view style="margin-top: -20rpx;font-size: 28rpx;">biubiubiu~</view> -->
                     <view class="colorful-text">
                         {{item.text}}
                     </view>
