@@ -244,7 +244,7 @@ page {
 }
 
 .success {
-    height: 500rpx;
+    height: 530rpx;
     width: 500rpx;
     position: relative;
     background-color: white;
@@ -256,6 +256,7 @@ page {
     align-items: center;
     justify-content: center;
     height: 100%;
+    position: relative;
 }
 
 .radus {
@@ -279,7 +280,6 @@ page {
 
 .acquire {
     text-align: center;
-    margin-top: 20rpx;
     font-size: 24px;
     font-weight: bold;
     color: #FF6060;
@@ -302,12 +302,15 @@ page {
     line-height: 54px;
     text-align: center;
     margin: 0 auto;
-    margin-top: 30rpx;
     color: white;
     font-size: 28px;
     font-weight: bold;
     background: linear-gradient(71deg, #FF7272 1%, #FF7272 31%, #FFAB87 85%);
     border-radius: 34px;
+    position: absolute;
+    bottom: 30rpx;
+    left: 0;
+    right: 0;
 }
 
 .arc {

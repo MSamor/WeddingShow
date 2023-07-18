@@ -1,4 +1,5 @@
-<block wx:for="{{list}}">
+<t-input label="搜索" bindchange="textChange" value="{{text}}" placeholder="请输入" ></t-input>
+<block wx:for="{{newList}}" wx:key="index">
     <t-cell title="{{item.prizeName}}{{item.prizeNum}}" description="{{item.userName}}：{{item.openid}}" align="top" image="{{item.avatarUrl}}" hover bordered="{{false}}" t-class-title="t-class-title">
         <t-switch defaultValue="{{item.isGet}}" bind:change="onChange" slot="note" />    
     </t-cell>

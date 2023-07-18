@@ -90,6 +90,5 @@
                 </view>
             </view>
         </view>
-        <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose" />
     </view>
 </t-popup>
