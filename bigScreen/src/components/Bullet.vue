@@ -11,7 +11,7 @@
       }"
     >
       <div class="avatar" ref="avatar">
-        <img class="avatarImg" :src="item.url" alt="头像" />
+        <img class="avatarImg" src="../assets/valentine_011-hearts-love-affection-like.png" alt="头像" />
         <div class="nickname">{{ item.nickName }}:</div>
         <div class="text">{{ item.message }}</div>
       </div>
@@ -54,7 +54,7 @@ onMounted(() => {
 const startBarrage = () => {
   timer = setInterval(() => {
     messages.value.map((item) => {
-      item.right -= 3;
+      item.right -= 1;
       if (item.right < -5000) {
         messages.value.pop();
       }
