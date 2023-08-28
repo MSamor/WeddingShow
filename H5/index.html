@@ -653,12 +653,17 @@
       <div class="toast">上滑继续浏览</div>
       <i class="iconfont" style="color: #fff;font-size: 30px;">&#xe606;</i>
     </span>
+    <audio id="mp3" src="./public/music/music.mp3" autoplay="false"
+      loop></audio>
     <script src="./public/js/js.fullpage.js"></script>
     <script src="./public/js/type.js"></script>
     <script src="./public/js/touch.js"></script>
     <script type="text/javascript"
       src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
     <script>
+      var u = navigator.userAgent;
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端    
+
       // 滚屏动画控制
 
       var domLists = []
@@ -798,22 +803,41 @@
       })
       window.onload = function () {
         let playBtn = document.querySelector('#play-btn')
-        // 音频资源 load 之后通过微信桥接触发播放
-        soundBgm.on('load', () => {
-          window.WeixinJSBridge && window.WeixinJSBridge.invoke('getNetworkType', {}, () => {
-            soundBgm.play();
-            playBtn.style.animationPlayState = 'running'
-          }, false);
-        })
+        let mp3 = document.getElementById("mp3")
+
+        document.addEventListener('WeixinJSBridgeReady', function () {
+          if (isiOS) {
+            // mp3.load()
+            mp3.play()
+          } else {
+            // 音频资源 load 之后通过微信桥接触发播放
+            soundBgm.on('load', () => {
+              // 播放音频
+              soundBgm.play();
+            })
+          }
+          playBtn.style.animationPlayState = 'running'
+
+        }, false);
 
         playBtn.addEventListener('click', function (event) {
           console.log("点击播放");
-          if (soundBgm.playing()) {
-            this.style.animationPlayState = 'paused'
-            soundBgm.pause()
+          if (isiOS) {
+            if (mp3.paused) {
+              this.style.animationPlayState = 'running'
+              mp3.play()
+            } else {
+              this.style.animationPlayState = 'paused'
+              mp3.pause()
+            }
           } else {
-            this.style.animationPlayState = 'running'
-            soundBgm.play();
+            if (soundBgm.playing()) {
+              this.style.animationPlayState = 'paused'
+              soundBgm.pause()
+            } else {
+              this.style.animationPlayState = 'running'
+              soundBgm.play();
+            }
           }
         })
       }
