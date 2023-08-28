@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./public/css/zepto.fullpage.css">
   <link rel="stylesheet" href="./public/css/animate.css">
   <link rel="stylesheet" href="./public/css/index.css">
+  <script src="./public/js/audio.js"></script>
   <style type="text/css">
     @font-face {
       font-family: wawa;
@@ -18,7 +19,7 @@
     html,
     body,
     h4 {
-      font-family: wawa!important;
+      font-family: wawa !important;
     }
 
     #loading-mask {
@@ -641,7 +642,8 @@
         <div id="map-msg">
           <p class="js-animate animated" data-animate="bounceInDown" data-time="0">🥂邛崃市孔明街道（卧龙镇）胖哥成园（318国道旁）</p>
           <p class="js-animate animated" data-animate="bounceInLeft" data-time="1000">💎欢迎各位亲朋好友早请~</p>
-          <p class="js-animate animated" data-animate="bounceInRight" data-time="2000" style="font-weight: bolder;color: red;">🎊文明婚礼，禁止婚闹。</p>
+          <p class="js-animate animated" data-animate="bounceInRight" data-time="2000"
+            style="font-weight: bolder;color: red;">🎊文明婚礼，禁止婚闹。</p>
           <p class="js-animate animated" data-animate="bounceInUp" data-time="3000"><i
               class="iconfont red-icon">&#xe636;</i>有任何疑问请致电 新郎&新娘</p>
         </div>
@@ -658,16 +660,6 @@
       src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
     <script>
       // 滚屏动画控制
-
-      if (isMobile !== false) {
-        var loadTimer = setInterval(() => {
-          console.log(loadSum)
-          if (loadSum >= 17) {
-            start()
-            type()
-          }
-        }, 300);
-      }
 
       var domLists = []
       var mapFlag = false
@@ -798,43 +790,41 @@
       }
 
       // 音乐播放控制
+      // Web Audio 初始化
+      const soundBgm = new Howl({
+        src: ["./public/music/music.mp3"],
+        loop: true,
+        preload: true,
+      })
       window.onload = function () {
-        let mp3 = document.querySelector('#mp3')
         let playBtn = document.querySelector('#play-btn')
-        mp3.load()
-        mp3.play()
-        play = true
-
-        document.addEventListener("WeixinJSBridgeReady", function () {
-          mp3.play()
-          if (!mp3.paused) {
-            this.style.animationPlayState = 'running'
-            mp3.play()
-            play = true
-          }
-        }, false)
-
-
-
-        if (play) {
-          playBtn.style.animationPlayState = 'running'
-        } else {
-          playBtn.style.animationPlayState = 'paused'
-        }
+        // 音频资源 load 之后通过微信桥接触发播放
+        soundBgm.on('load', () => {
+          window.WeixinJSBridge && window.WeixinJSBridge.invoke('getNetworkType', {}, () => {
+            soundBgm.play();
+            playBtn.style.animationPlayState = 'running'
+          }, false);
+        })
 
         playBtn.addEventListener('click', function (event) {
-          if (play) {
+          console.log("点击播放");
+          if (soundBgm.playing()) {
             this.style.animationPlayState = 'paused'
-            mp3.pause()
-            play = false
+            soundBgm.pause()
           } else {
-            if (mp3.readyState === 4) {
-              this.style.animationPlayState = 'running'
-              mp3.play()
-              play = true
-            }
+            this.style.animationPlayState = 'running'
+            soundBgm.play();
           }
         })
+      }
+
+      if (isMobile !== false) {
+        var loadTimer = setInterval(() => {
+          if (loadSum >= 17 && soundBgm.state() == "loaded") {
+            start()
+            type()
+          }
+        }, 300);
       }
     </script>
 
