@@ -654,7 +654,6 @@
     <audio id="mp3" src="./public/music/music.mp3" loop="-1"></audio>
     <script src="./public/js/js.fullpage.js"></script>
     <script src="./public/js/type.js"></script>
-    <script src="./public/js/touch.js"></script>
     <script type="text/javascript"
       src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
     <script>
@@ -666,13 +665,14 @@
 
       var domLists = []
       var mapFlag = false
+      var fullpage = null
 
       function start() {
         clearInterval(loadTimer);
         var forEach = [].forEach;
         document.getElementById('loading-mask').style.display = 'none'
 
-        document.getElementsByClassName('wp-inner')[0].fullpage({
+        fullpage = document.getElementsByClassName('wp-inner')[0].fullpage({
           change: function (e) {
             clearTime()
             // 移除动画属性
@@ -799,6 +799,7 @@
       window.onload = function () {
         let playBtn = document.querySelector('#play-btn')
         let mp3 = document.getElementById("mp3")
+        mp3.load()
         mp3.play()
         playBtn.style.animationPlayState = 'running'
         document.addEventListener('WeixinJSBridgeReady', function () {
@@ -846,10 +847,8 @@
           }
         }, 300);
       }
-    </script>
 
-    <!-- 打字机效果 -->
-    <script>
+      // <!-- 打字机效果 -->
       function type() {
         const obj = {
           output: '',
@@ -908,7 +907,12 @@
 
       上滑继续浏览
       `, options).print()
+
+        setTimeout(() => {
+          fullpage.moveNext(true);
+        }, 13000);
       }
+
     </script>
 </body>
 
