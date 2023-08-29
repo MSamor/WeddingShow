@@ -182,10 +182,8 @@
   <div class="wp">
     <div class="wp-inner">
       <div class="page page0">
-        <div id="type">
+        <div id="type" class="full-bg js-animate animated animation-800">
           <div id="type1"></div>
-          <div id="type2"></div>
-          <div id="type3"></div>
         </div>
       </div>
       <div class="page page1">
@@ -653,8 +651,7 @@
       <div class="toast">上滑继续浏览</div>
       <i class="iconfont" style="color: #fff;font-size: 30px;">&#xe606;</i>
     </span>
-    <audio id="mp3" src="./public/music/music.mp3" autoplay="false"
-      loop></audio>
+    <audio id="mp3" src="./public/music/music.mp3" loop="-1"></audio>
     <script src="./public/js/js.fullpage.js"></script>
     <script src="./public/js/type.js"></script>
     <script src="./public/js/touch.js"></script>
@@ -662,7 +659,8 @@
       src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
     <script>
       var u = navigator.userAgent;
-      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端    
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;   //判断是否是 android终端    
 
       // 滚屏动画控制
 
@@ -671,12 +669,9 @@
 
       function start() {
         clearInterval(loadTimer);
-
         var forEach = [].forEach;
+        document.getElementById('loading-mask').style.display = 'none'
 
-        setTimeout(() => {
-          document.getElementById('loading-mask').style.display = 'none'
-        }, 100);
         document.getElementsByClassName('wp-inner')[0].fullpage({
           change: function (e) {
             clearTime()
@@ -804,20 +799,21 @@
       window.onload = function () {
         let playBtn = document.querySelector('#play-btn')
         let mp3 = document.getElementById("mp3")
-
+        mp3.play()
+        playBtn.style.animationPlayState = 'running'
         document.addEventListener('WeixinJSBridgeReady', function () {
           if (isiOS) {
-            // mp3.load()
             mp3.play()
-          } else {
+            playBtn.style.animationPlayState = 'running'
+          }
+          if (isAndroid) {
             // 音频资源 load 之后通过微信桥接触发播放
             soundBgm.on('load', () => {
               // 播放音频
               soundBgm.play();
+              playBtn.style.animationPlayState = 'running'
             })
           }
-          playBtn.style.animationPlayState = 'running'
-
         }, false);
 
         playBtn.addEventListener('click', function (event) {
@@ -830,7 +826,7 @@
               this.style.animationPlayState = 'paused'
               mp3.pause()
             }
-          } else {
+          } else if (isAndroid) {
             if (soundBgm.playing()) {
               this.style.animationPlayState = 'paused'
               soundBgm.pause()
@@ -880,14 +876,13 @@
         };
         Printer.init(`
         ❤️❤️正在链接 "幸福服务器"...❤️❤️
-        ❤️❤️链接建立成功.❤️❤️
+        ❤️❤️链接建立成功❤️❤️
       
       [root ~]# 请输入密码
       [root ~]# *****
       [root ~]# 登录成功
 
       !// AI自动生成邀请函中~^
-      !// 加载中...^
 
       $public class UserApplication {
       　public static void main(String[] args) {
@@ -904,21 +899,15 @@
       [root ~]# $打包完成...^
       [root ~]# $部署完成...^
       [root ~]# $立即执行...^
-
       ####################### 100%
 
       -🤵‍♂️: 我们结婚啦~❤️‍🔥
       👰‍♀️: 我们结婚啦~❤️‍🔥^
        
-      正在启动...............................
+      启动完成......
 
-      上滑可以切换页面
+      上滑继续浏览
       `, options).print()
-
-        setTimeout(() => {
-          var robot = new touchRobot(document.getElementById("type"));
-          robot.touchTop();
-        }, 13000);
       }
     </script>
 </body>
