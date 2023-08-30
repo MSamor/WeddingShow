@@ -22,6 +22,10 @@
       font-family: wawa !important;
     }
 
+    html {
+      background-color: #ecf1f7;
+    }
+
     #loading-mask {
       width: 100%;
       height: 100%;
@@ -181,12 +185,12 @@
   <audio id="mp3" src="./public/music/music.mp3" loop></audio>
   <div class="wp">
     <div class="wp-inner">
-      <div class="page page0">
+      <div class="page page0" style="display: none;">
         <div id="type" class="full-bg js-animate animated animation-800">
           <div id="type1"></div>
         </div>
       </div>
-      <div class="page page1">
+      <div class="page page1" style="display: none;">
         <div class="photo-wrap">
           <div class="full-bg js-animate animated animation-8000"
             style="background-image: url(./public/photo/1.jpg);width: 100%;height: 100%;position: absolute;top:0;left: 0;"
@@ -331,7 +335,7 @@
           </h2>
         </div>
       </div>
-      <div class="page page2">
+      <div class="page page2" style="display: none;">
         <div class="photo-wrap">
           <div class="full-bg js-animate animated animation-1000"
             style="background-image: url(./public/photo/3.jpg);width: 100%;height: 100%;" data-animate="myzoomIn">
@@ -382,7 +386,7 @@
           </div>
         </div>
       </div>
-      <div class="page page3">
+      <div class="page page3" style="display: none;">
         <div class="photo-wrap">
           <div class="full-bg js-animate animated animation-5000"
             style="background-image: url(./public/photo/6.jpg);width: 100%;height: 100%;" data-sec="zoomCycle"
@@ -487,7 +491,7 @@
           </h3>
         </div>
       </div>
-      <div class="page page4">
+      <div class="page page4" style="display: none;">
         <div class="photo-wrap">
           <div class="full-bg js-animate animated animation-5000"
             style="background-image: url(./public/photo/7.jpg);width: 100%;height: 100%;" data-sec="zoomCycle"
@@ -592,7 +596,7 @@
           </h3>
         </div>
       </div>
-      <div class="page page5">
+      <div class="page page5" style="display: none;">
         <div class="photo-wrap">
           <div class="photo-box js-animate animated animation-2000" data-animate="fadeIn" data-time="500" style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 1;
                         background-image: url(./public/photo/9.jpg);"></div>
@@ -632,7 +636,7 @@
         <div class="ele-wrap">
         </div>
       </div>
-      <div class="page page6" style="position: relative;">
+      <div class="page page6" style="position: relative;display: none;">
         <div id="map"></div>
         <div id="location-btn">
           <i class="iconfont" style="font-size: 32px;">&#xe616;</i>
@@ -666,15 +670,19 @@
       var domLists = []
       var mapFlag = false
       var fullpage = null
+      var typeTimeout = null
 
       function start() {
         clearInterval(loadTimer);
         var forEach = [].forEach;
-        document.getElementById('loading-mask').style.display = 'none'
+        setTimeout(() => {
+          document.getElementById('loading-mask').style.display = 'none'
+        }, 100);
 
         fullpage = document.getElementsByClassName('wp-inner')[0].fullpage({
           change: function (e) {
             clearTime()
+
             // 移除动画属性
             forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function (v) {
               v.classList.add('hide');
@@ -683,12 +691,9 @@
                 v.classList.remove(v.dataset['sec']);
               }
             });
+
           },
           afterChange: function (e) {
-            if (e.cur === 5 && !mapFlag) {
-              initMap()
-            }
-
             domLists = document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate')
             forEach.call(domLists, v => {
               var time = v.dataset.time;
@@ -704,6 +709,13 @@
                 }
               }, time);
             })
+            setTimeout(() => {
+              document.querySelectorAll('.page')[e.cur].style.display = "block"
+            }, 0);
+
+            if (e.cur === 6 && !mapFlag) {
+              initMap()
+            }
           }
         });
       }
@@ -908,8 +920,9 @@
       上滑继续浏览
       `, options).print()
 
-        setTimeout(() => {
+        typeTimeout = setTimeout(() => {
           fullpage.moveNext(true);
+          clearTimeout(typeTimeout)
         }, 14000);
       }
 
