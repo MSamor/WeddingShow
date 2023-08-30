@@ -741,6 +741,12 @@
           var map = new BMap.Map("map", { minZoom: 5, maxZoom: 19 })
 
           map.centerAndZoom(new BMap.Point(mapCenter[0], mapCenter[1]), 15);
+          map.addControl(new BMap.NavigationControl({
+            anchor: BMAP_ANCHOR_TOP_LEFT
+          }));
+          map.enableContinuousZoom(); // 开启连续缩放效果  
+          map.enableInertialDragging();　// 开启惯性拖拽效果 
+          map.enableScrollWheelZoom(true);
 
           function ComplexCustomOverlay(point, text, mouseoverText) {
             this._point = point;
