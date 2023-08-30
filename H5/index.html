@@ -711,11 +711,10 @@
             })
             setTimeout(() => {
               document.querySelectorAll('.page')[e.cur].style.display = "block"
+              if (e.cur === 6 && !mapFlag) {
+                initMap()
+              }
             }, 0);
-
-            if (e.cur === 6 && !mapFlag) {
-              initMap()
-            }
           }
         });
       }
@@ -739,7 +738,7 @@
         if (window.BMap) {
           mapFlag = true
           var mapCenter = [103.420561, 30.332249]
-          var map = new BMap.Map("map", { minZoom: 10, maxZoom: 14 })
+          var map = new BMap.Map("map", { minZoom: 5, maxZoom: 19 })
 
           map.centerAndZoom(new BMap.Point(mapCenter[0], mapCenter[1]), 15);
 
