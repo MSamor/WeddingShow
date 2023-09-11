@@ -40,17 +40,19 @@
     </view>
 
 
-    <view class="text">
-        {{activityInfo.activityDesc}}
-    </view>
-    <view class="prizeList">
-        <view class="prizeTitle">
-            奖品列表
+    <view class="bottomWrapper">
+        <view class="text">
+            {{activityInfo.activityDesc}}
         </view>
-        <view class="prizeListItem">
-            <block wx:for="{{activityInfo.prizeList}}" wx:key="index">
-                <view class="wave-text">{{item.prizeName +" * " + item.count}}</view>
-            </block>
+        <view class="prizeList">
+            <view class="prizeTitle">
+                奖品列表
+            </view>
+            <view class="prizeListItem">
+                <block wx:for="{{activityInfo.prizeList}}" wx:key="index">
+                    <view class="wave-text">{{item.prizeName +" * " + item.count}}</view>
+                </block>
+            </view>
         </view>
     </view>
 </view>

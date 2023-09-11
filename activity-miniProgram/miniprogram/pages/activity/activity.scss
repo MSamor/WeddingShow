@@ -61,7 +61,7 @@ page {
     position: absolute;
     z-index: 9;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 90%;
     text-align: center;
     color: pink;
@@ -121,35 +121,39 @@ page {
     }
 }
 
-
-.text {
-    padding: 0 30rpx;
-    color: #fb8d9a;
-}
-
-.prizeList {
-    padding: 0 30rpx;
-    height: 180rpx;
-    color: #ff5534;
-    font-family: monospace;
-    font-weight: bolder;
-    text-align: center;
-
-    .prizeTitle {
-        font-size: 40rpx;
-    }
-
-    .prizeListItem {
-        font-size: 32rpx;
-        width: 500rpx;
-        height: 100%;
-        margin: 0 auto;
-        border-radius: 30rpx;
-        margin-top: 10rpx;
+.bottomWrapper {
+    height: 350rpx;
+    .text {
+        padding: 0 30rpx;
+        color: #fb8d9a;
+        height: 150rpx;
         overflow-y: scroll;
-        border: 1px solid gold;
+    }
+
+    .prizeList {
+        padding: 0 30rpx;
+        color: #ff5534;
+        font-family: monospace;
+        font-weight: bolder;
+        text-align: center;
+
+        .prizeTitle {
+            font-size: 40rpx;
+        }
+
+        .prizeListItem {
+            font-size: 32rpx;
+            width: 500rpx;
+            height: 138rpx;
+            margin: 0 auto;
+            border-radius: 30rpx;
+            margin-top: 10rpx;
+            overflow-y: scroll;
+            border: 1px solid gold;
+        }
     }
 }
+
 
 @keyframes shine {
     0% {
