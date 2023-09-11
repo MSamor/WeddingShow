@@ -85,6 +85,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        this.apiSwiper()
     },
 
     getPage(pageNum: number, pageSize: number, flag: boolean) {
@@ -121,7 +122,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.apiSwiper()
         requestByOpenid(() => {
             this.getPage(1, 20, true)
         })
@@ -158,6 +158,7 @@ Page({
             pageSize: 20
         })
         this.getPage(this.data.pageNum, this.data.pageSize, true)
+        this.apiSwiper()
     },
 
     /**
