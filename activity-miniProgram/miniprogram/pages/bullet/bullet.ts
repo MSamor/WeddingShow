@@ -77,8 +77,12 @@ Page({
         })
     },
 
-    bigImage() {
-        wx.previewImage({ urls: this.data.swiperList })
+    bigImage(e: any) {
+        wx.previewImage({
+            current: e.currentTarget.dataset.item,
+            urls: this.data.swiperList
+        },
+        )
     },
 
     /**

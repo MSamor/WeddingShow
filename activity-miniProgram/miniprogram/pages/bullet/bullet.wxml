@@ -1,13 +1,13 @@
 <view class="card-theme" wx:if="{{swiperList.length != 0}}">
     <swiper indicator-dots="{{true}}" autoplay="{{true}}" style="height: 100%;">
-        <swiper-item wx:for="{{swiperList}}" style="text-align: center;background-color: #dbf8fe;">
-            <image bindtap="bigImage" class="imageSwiper" src="{{item}}" mode="heightFix" />
+        <swiper-item wx:for="{{swiperList}}" wx:key="index" style="text-align: center;background-color: #dbf8fe;">
+            <image bindtap="bigImage" class="imageSwiper" data-item="{{item}}" src="{{item}}" mode="heightFix" />
         </swiper-item>
     </swiper>
 </view>
 <view class="wrapper">
     <view class="scrollView" wx:if="{{list.length != 0}}">
-        <block wx:for="{{list}}">
+        <block wx:for="{{list}}" wx:key="index">
             <!-- <t-cell title="{{item.text}}" description="发送时间：{{item.date}}" hover /> -->
             <view class="bulletBox">
 
