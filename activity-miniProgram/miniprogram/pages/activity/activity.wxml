@@ -4,8 +4,8 @@
     <view wx:if="{{true}}">
         <view class="countdown-title" animation="{{animationData}}" style="font-size: {{fontSize}}rpx;" bindtap="toManage"> 开奖倒计时 </view>
         <view class="countdown-box">
-            <t-count-down wx:if="{{time > 0}}" t-class-count="external-count" t-class-split="external-split" content="default" time="{{ time }}" splitWithUnit millisecond size="large" bind:finish="finishActivity" />
-            <t-count-down wx:if="{{time <= 0}}" t-class-count="external-count" t-class-split="external-split" content="default" time="{{ 0 }}" splitWithUnit millisecond size="large" />
+            <t-count-down wx:if="{{time > 0}}" format="DD:HH:mm:ss" t-class-count="external-count" t-class-split="external-split" content="default" time="{{ time }}" splitWithUnit millisecond size="large" bind:finish="finishActivity" />
+            <t-count-down wx:if="{{time <= 0}}" format="DD:HH:mm:ss" t-class-count="external-count" t-class-split="external-split" content="default" time="{{ 0 }}" splitWithUnit millisecond size="large" />
         </view>
     </view>
 </view>
