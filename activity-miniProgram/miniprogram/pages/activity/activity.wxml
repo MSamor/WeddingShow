@@ -87,6 +87,12 @@
                     <view class="openid">中奖编号：{{openid}}</view>
                 </block>
 
+                <block wx:if="{{!join}}">
+                    <view class="acquire">
+                        哎呀，手速慢了~
+                    </view>
+                </block>
+
                 <view class="btnGood" bindtap="onClose">
                     好的
                 </view>
