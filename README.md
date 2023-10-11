@@ -1,5 +1,13 @@
 ## 👩‍❤️‍👨👩‍❤️‍👨WeddingShow-婚庆项目👩‍❤️‍👨👩‍❤️‍👨
 
+> 2023年10月11日更新：我在2023年10月已完成婚礼，项目也在我的婚礼上使用过了，稳定无BUG，亲友们也在积极参与，也调动了大家的热情，也为婚礼添加了一些不同的元素。
+>
+> 下面更新了我自己的邀请函，大屏和小程序二维码。不保证稳定访问，能打开就做个演示参考。
+>
+> 开源本项目，欢迎大家fork，star
+>
+> 有BUG欢迎提issue
+
 🔥项目一共分为四个小项目，分别如下：
 | 文件夹                | 语言/框架           | 项目说明                                 |
 | --------------------- | ------------------- | ---------------------------------------- |
@@ -10,7 +18,7 @@
 | 🚀wedding_show.sql     | Mysql               | 数据库                                   |
 >邀请函H5页面fork自Github开源项目，进行了部分优化修改，添加了微信分享卡片效果展示。
 ### 🌈部署说明
-## ✅H5
+## ✅H5(体验地址：http://weddingshow.wpaini.com/) 仅限手机端访问
 
 🥰启动说明：
 
@@ -64,7 +72,7 @@ token:
   </tr>
 </table>
 
-## ✅bigScreen
+## ✅bigScreen(体验地址：http://weddingshow.wpaini.com/bigScreen/)
 
 🚗支持弹幕，支持小程序后台修改轮播图
 
@@ -95,7 +103,12 @@ let baseWsUrl = "ws:xxx.xxx.xxx.xxx:8888/ws/weddingShow";
   </tr>
 </table>
 
-## ✅activity-miniProgram
+## ✅activity-miniProgram(体验小程序：婚庆幸运互动)
+<table>
+  <tr>
+      <img decoding="async" src="http://static.wpaini.com/code.png" width="50%">
+  </tr>
+</table>
 发弹幕，送祝福，参与抽奖~(弹幕是所有发布人都会显示)
 
 **🎯连续在1s内点击小程序“首页”的“开奖倒计时”文字5次可以进入管理后台，输入密码即可进行中奖人查看，用户禁用，禁止发送弹幕，轮播图修改操作。**
